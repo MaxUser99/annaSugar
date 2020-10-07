@@ -5295,6 +5295,16 @@ follow-redirects@^1.0.0, follow-redirects@^1.10.0:
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.0.tgz#b42e8d93a2a7eea5ed88633676d6597bc8e384db"
   integrity sha512-aq6gF1BEKje4a9i9+5jimNFIpq4Q1WiwBToeRK5NvZBd/TRsmW8BsJfOEGkr76TbOyPVD3OVDN910EcUNtRYEA==
 
+fontsource-cormorant-infant@^3.0.10:
+  version "3.0.10"
+  resolved "https://registry.yarnpkg.com/fontsource-cormorant-infant/-/fontsource-cormorant-infant-3.0.10.tgz#018d97caa91e13f1395c89a7ee8fb009ea3c90d5"
+  integrity sha512-L1pGFmNEZtYffXihcn8Dz8EX0PyhSF74BqyaCkutIlgZ4zSZHaYZabf3SKf+BqFG9ECJ0BG9lFX/2S3J9O3tdw==
+
+fontsource-montserrat-alternates@^3.0.9:
+  version "3.0.9"
+  resolved "https://registry.yarnpkg.com/fontsource-montserrat-alternates/-/fontsource-montserrat-alternates-3.0.9.tgz#a44810061eda830179493da54f6c978e8cff5728"
+  integrity sha512-nnzckiKbDm1vq7L/x8r2iXf2B1DRbq2MucnrM3eMwyoDr+I0HZAMgjrKflVVA+BGYR4XpykTHu6R1JQP70sALQ==
+
 for-in@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"

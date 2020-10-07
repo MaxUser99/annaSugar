@@ -1,5 +1,11 @@
-import React from "react"
+import React from 'react';
+import Layout from '../components/layout/layout';
+import 'normalize.css';
 
-export default function Home() {
-  return <div>Hello world, GATSBY!</div>
-}
+const Home = () => (
+  <Layout>
+    hello gatsby!
+  </Layout>
+);
+
+export default Home;
