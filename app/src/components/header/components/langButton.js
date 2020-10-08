@@ -38,7 +38,7 @@ const Img = styled.img`
 
 LangButton.propTypes = {
   lang: PropTypes.oneOf([ 'ru', 'en' ]).isRequired,
-  active: PropTypes.bool.isRequired
+  active: PropTypes.bool
 };
 
 export default LangButton;

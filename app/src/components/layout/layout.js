@@ -1,25 +1,35 @@
 import React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import Header from '../header/header';
 import Footer from '../footer/footer';
+import Container from '../container/container';
+import 'normalize.css';
+import 'fontsource-cormorant-infant';
+import 'fontsource-montserrat-alternates/400.css';
+
+const GlobalStyles = createGlobalStyle`
+  body {
+    font-family: "Montserrat Alternates";
+  }
+`;
 
 const Layout = ({ children }) => (
-  <ThemeProvider theme={theme}>
-    <Container>
-      <Header />
-        { children}
-      <Footer />
-    </Container>
-  </ThemeProvider>
+  <>
+    <GlobalStyles />
+    <ThemeProvider theme={theme}>
+      <StyledContainer direction='column'>
+        <Header />
+          { children}
+        <Footer />
+      </StyledContainer>
+    </ThemeProvider>
+  </>
 );
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
+const StyledContainer = styled(Container)`
   min-height: 100vh;
   width: 100%;
   background-color: ${({ theme }) => theme.color.beige};
-  // background-color: beige;
 `;
 
 const theme = {

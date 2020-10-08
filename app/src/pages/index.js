@@ -1,10 +1,10 @@
 import React from 'react';
+import MainBlock from '../components/indexComponents/mainBlock';
 import Layout from '../components/layout/layout';
-import 'normalize.css';
 
 const Home = () => (
   <Layout>
-    hello gatsby!
+    <MainBlock />
   </Layout>
 );
 
