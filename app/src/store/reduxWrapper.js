@@ -10,6 +10,6 @@ const rootReducer = combineReducers({
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
-export default ({ element }) => (
-  <Provider store={store}>{element}</Provider>
+export default ({ children }) => (
+  <Provider store={store}>{children}</Provider>
 );
