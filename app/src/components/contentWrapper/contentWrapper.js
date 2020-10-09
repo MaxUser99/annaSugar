@@ -21,7 +21,7 @@ const Wrapper = styled(Container)`
 `;
 
 ContentWrapper.propTypes = {
-  padding: PropTypes.oneOf([ 'wide', 'narrow' ]),
+  padding: PropTypes.oneOf([ 'wide', 'narrow', 'none' ]),
 }
 
 export default ContentWrapper;

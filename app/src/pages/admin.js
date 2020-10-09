@@ -11,7 +11,7 @@ import PrivateRoute from '../components/PrivateRoute/privateRoute';
 const Admin = () => {
   return (
     <StyledContainer>
-      <ContentWrapper>
+      <ContentWrapper justifyContent='center'>
         <Router basepath='/admin'>
           <Login path='/login' />
           <PrivateRoute path='/' component={AdminHome} />
