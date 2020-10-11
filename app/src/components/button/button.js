@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Button = ({ onClick, ...props }) => {
   const ClickHandler = (e) => {
@@ -39,9 +40,9 @@ const rippleAnimation = keyframes`
 const StyledButton = styled.button`
   width: 220px;
   height: 64px;
-  border: none;
-  background-color: ${({ theme }) => theme.color.black};
-  color: ${({ theme }) => theme.text.white};
+  border: ${({ theme, outlined }) => (outlined ? `1px solid ${theme.color.black}` : 'none')};
+  background-color: ${({ theme, outlined }) => (outlined ? 'transparent' : theme.color.black)};
+  color: ${({ theme, outlined }) => (outlined ? theme.text.default : theme.text.white)};
   font-weight: bold;
   font-size: 12px;
   line-height: 12px;
@@ -53,6 +54,7 @@ const StyledButton = styled.button`
   transition: 0.3s;
   &:hover {
     background-color: ${({ theme }) => (`${theme.color.black}E6`)};
+    color: ${({ outlined }) => (outlined ? 'white' : 'black')};
   }
   &:focus {
     outline: none;
@@ -80,5 +82,9 @@ const StyledButton = styled.button`
         animation-duration: 1s;
   }
 `;
+
+Button.propTypes = {
+  outlined: PropTypes.bool
+};
 
 export default Button;
