@@ -15,7 +15,7 @@ const StyledDiv = styled.div`
 `;
 
 Container.propTypes = {
-  alignItems: PropTypes.oneOf([ 'baseline', 'center', 'flex-end', 'flex-start' ]),
+  alignItems: PropTypes.oneOf([ 'baseline', 'center', 'flex-end', 'flex-start', 'stretch' ]),
   justifyContent: PropTypes.oneOf([ 'baseline', 'center', 'flex-end', 'flex-start', 'space-around', 'space-between']),
   direction: PropTypes.oneOf([ 'row', 'column' ]),
   fullWidth: PropTypes.bool,

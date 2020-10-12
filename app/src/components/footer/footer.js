@@ -31,13 +31,14 @@ const Footer = () => (
   </>
 );
 
-const Block2 = styled(Container)`
-  padding: 26px 0 39px;
-`;
-
 const Block1 = styled(Container)`
   background-color: ${({ theme }) => theme.color.darkBeige};
   padding: 64px 0;
+  margin-top: 64px;
+`;
+
+const Block2 = styled(Container)`
+  padding: 26px 0 39px;
 `;
 
 const Header = styled.h2`

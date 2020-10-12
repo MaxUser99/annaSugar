@@ -5,6 +5,7 @@ import Container from '../container/container';
 import ContentWrapper from '../contentWrapper/contentWrapper';
 import { loadArticles } from '../../store/articles/actions';
 import Article from './article';
+import Button from '../button/button';
 
 const MAX_ARTICLES = 4;
 
@@ -32,27 +33,11 @@ const Articles = ({ articles, loadArticles }) => {
 };
 
 const Title = styled.h2`
-font-weight: bold;
+  font-weight: bold;
   font-size: 48px;
   line-height: 48px;
   color: ${({ theme }) => theme.text.header};
-`;
-
-const Button = styled.button`
-  border: none;
-  outline: none;
-  cursor: pointer;
-  color: ${({ theme }) => theme.text.white};
-  background-color: ${({ theme }) => theme.text.header};
-  padding: 0;
-  width: 220px;
-  height: 64px;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 12px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  margin: 64px 0 32px;
 `;
 
 export default connect(

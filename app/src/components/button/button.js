@@ -54,7 +54,7 @@ const StyledButton = styled.button`
   transition: 0.3s;
   &:hover {
     background-color: ${({ theme }) => (`${theme.color.black}E6`)};
-    color: ${({ outlined }) => (outlined ? 'white' : 'black')};
+    color: ${({ theme }) => theme.text.white};
   }
   &:focus {
     outline: none;

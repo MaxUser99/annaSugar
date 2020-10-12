@@ -23,7 +23,6 @@ const MainBlock = () => {
       }
     }  
   `);
-  console.log(data)
 
   return (
     <Container fullWidth>
