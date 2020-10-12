@@ -9,11 +9,11 @@ export const theme =  {
     beige: '#E5E3DC',
     darkBeige: '#DAD8D1',
     black: '#222222',
-    muted: '#00000099',
+    mutted: '#00000099',
   },
   text: {
     white: '#FFFFFF',
-    muted: '#777672',
+    mutted: '#777672',
     default: '#000000',
     header: '#1A1B1E',
     lighter: '#1F1F1F',

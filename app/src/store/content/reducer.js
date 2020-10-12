@@ -5,7 +5,8 @@ import { PUSH_REVIEWS, SET_REVIEWS_LOADING } from './reviewActions';
 const LOADABLE_CONTENT = {
   data: [],
   status: RESOURCE_STATUS.INITIAL,
-  error: null
+  error: null,
+  page: null
 };
 
 const initialState = {
@@ -28,7 +29,8 @@ export default (state = initialState, action) => {
       articles: {
         ...state.articles,
         status: RESOURCE_STATUS.LOADED,
-        data: [...state.articles.data, ...action.payload]
+        data: [...state.articles.data, ...action.payload.articles],
+        page: action.payload.page
       }
     };
 
@@ -45,7 +47,8 @@ export default (state = initialState, action) => {
       reviews: {
         ...state.reviews,
         status: RESOURCE_STATUS.LOADED,
-        data: [...state.reviews.data, ...action.payload]
+        data: [...state.reviews.data, ...action.payload.reviews],
+        page: action.payload.page
       }
     };
 

@@ -4,12 +4,12 @@ import randomImage from '../../assets/images/random-image.svg';
 export const SET_ARTICLES_LOADING = 'SET_ARTICLES_LOADING';
 export const PUSH_ARTICLES = 'PUSH_ARTICLES';
 
-export const setArticlesLoading = page => ({ type: SET_ARTICLES_LOADING, payload: page });
-export const pushArticles = articles => ({ type: PUSH_ARTICLES, payload: articles }); 
+export const setArticlesLoading = () => ({ type: SET_ARTICLES_LOADING });
+export const pushArticles = (articles, page) => ({ type: PUSH_ARTICLES, payload: { articles, page } }); 
 
-export const loadArticles = (page = 0) => {
+export const loadArticles = page => {
   return dispatch => {
-    dispatch(setArticlesLoading(page));
+    dispatch(setArticlesLoading());
 
     setTimeout(
       () => {
@@ -18,7 +18,7 @@ export const loadArticles = (page = 0) => {
           image: randomImage,
           date: new Date(date)
         }));
-        dispatch(pushArticles(transformedArticles));
+        dispatch(pushArticles(transformedArticles, page));
       },
       1500
     );

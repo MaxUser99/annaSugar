@@ -26,9 +26,9 @@ const Article = ({
       day = `${dayOfMonth}th`;
       break;
   }
-  // console.log('date: ', date, date.toLocaleDateString());
+
   const dateString = `${month}, ${day} ${year}`;
-  // const dateString = '';
+
   return (
     <StyledContainer direction='column' fullWidth>
       <Date>{dateString}</Date>
@@ -47,7 +47,7 @@ const Article = ({
 }
 
 const StyledContainer = styled(Container)`
-  &:not(:last-child) {
+  &:not(:last-of-type) {
     margin-bottom: 32px;
   }
 `;

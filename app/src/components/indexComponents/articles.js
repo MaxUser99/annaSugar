@@ -1,17 +1,22 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { navigate } from 'gatsby';
 import Container from '../container/container';
 import ContentWrapper from '../contentWrapper/contentWrapper';
 import { loadArticles } from '../../store/content/articleActions';
-import Article from './article';
+import PreviewArticle from '../previewArticle/previewArticle';
 import Button from '../button/button';
 
 const PREVIEW_ITEMS_COUNT = 4;
 
-const Articles = ({ articles, loadArticles }) => {
+const Articles = ({ articles, loadArticles, page }) => {
+  const buttonClickHandler = () => {
+    navigate('/blog');
+  }
+
   useEffect(() => {
-    loadArticles();
+    if (page === null) loadArticles(0);
   }, []);
 
   return (
@@ -20,10 +25,10 @@ const Articles = ({ articles, loadArticles }) => {
         <Title>Статьи</Title>
         { 
           articles.slice(0, PREVIEW_ITEMS_COUNT).map(article => (
-            <Article key={article.date.toString()} article={article} />
+            <PreviewArticle key={article.id} article={article} />
           ))
         }
-        <Button>все</Button>
+        <StyledButton onClick={buttonClickHandler}>все</StyledButton>
       </ContentWrapper>
     </Container>
   );
@@ -37,11 +42,16 @@ const Title = styled.h2`
   margin: 64px 0 32px;
 `;
 
+const StyledButton = styled(Button)`
+  margin-top: 64px;
+`;
+
 export default connect(
-  ({content: { articles: { data }}}) => ({ 
+  ({content: { articles: { data, page }}}) => ({ 
     articles: data,
+    page
   }), 
   (dispatch) => ({
-    loadArticles: () => dispatch(loadArticles())
+    loadArticles: page => dispatch(loadArticles(page))
   })
 )(Articles);

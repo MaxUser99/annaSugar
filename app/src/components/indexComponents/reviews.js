@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { navigate } from 'gatsby';
 import Review from './review';
 import Container from '../container/container';
 import ContentWrapper from '../contentWrapper/contentWrapper';
@@ -9,10 +10,14 @@ import { loadReviews } from '../../store/content/reviewActions';
 
 const PREVIEW_ITEMS_COUNT = 3;
 
-const Reviews = ({ reviews, loadReviews }) => {
+const Reviews = ({ reviews, loadReviews, page }) => {
+  const buttonClickHandler = () => {
+    navigate('/reviews');
+  };
+
   useEffect(() => {
-    loadReviews();
-  }, [ loadReviews ])
+    if (page === null) loadReviews(0);
+  }, []);
 
   return (
     <Container fullWidth>
@@ -25,7 +30,7 @@ const Reviews = ({ reviews, loadReviews }) => {
             ))
           }
         </ReviewsContainer>
-        <Button>еще</Button>
+        <Button onClick={buttonClickHandler}>еще</Button>
       </StyledWrapper>
     </Container>
   )
@@ -50,10 +55,11 @@ const ReviewsContainer = styled(Container)`
 `;
 
 export default connect(
-  ({ content: { reviews: { data }}}) => ({
-    reviews: data
+  ({ content: { reviews: { data, page }}}) => ({
+    reviews: data,
+    page
   }),
   dispatch => ({
-    loadReviews: () => dispatch(loadReviews())
+    loadReviews: page => dispatch(loadReviews(page))
   })
 )(Reviews);
