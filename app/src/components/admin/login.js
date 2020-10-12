@@ -15,7 +15,7 @@ const Login = () => {
 
   return (
     <StyledContainer fullWidth>
-      <ContentWrapper justifyContent='center' padding='none'>
+      <ContentWrapper justifyContent='center' maxWidth='none'>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <Title>Пожалуйста введите логин и пароль чтобы войти</Title>
           <StyledInput

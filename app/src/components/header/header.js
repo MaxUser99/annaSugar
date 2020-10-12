@@ -7,7 +7,7 @@ import LangButton from './components/langButton';
 
 const Header = () => (
   <Container fullWidth>
-    <ContentWrapper justifyContent='space-between' padding='narrow'>
+    <ContentWrapper justifyContent='space-between' maxWidth='wide'>
       <FixedWidthContainer>
         <SiteTitle>Anna Suggar</SiteTitle>
       </FixedWidthContainer>

@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Container from '../container/container';
 
-const PADDINGS = {
-  wide: '15.2%',
-  narrow: '5.125%',
-  none: '0',
+const WIDTHS = {
+  default: '952px',
+  wide: '1196px',
+  none: 'none'
 }
 
 const ContentWrapper = (props) => (
@@ -14,14 +14,13 @@ const ContentWrapper = (props) => (
 );
 
 const Wrapper = styled(Container)`
-  max-width: 1440px;
+  max-width: ${({ maxWidth = 'default' }) => WIDTHS[maxWidth]};
   margin: 0 auto;
   width: 100%;
-  padding: 0 ${({ padding = 'wide' }) => PADDINGS[padding]};
 `;
 
 ContentWrapper.propTypes = {
-  padding: PropTypes.oneOf([ 'wide', 'narrow', 'none' ]),
+  maxWidth: PropTypes.oneOf([ 'wide', 'default', 'none' ]),
 }
 
 export default ContentWrapper;
