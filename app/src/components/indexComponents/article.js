@@ -39,7 +39,7 @@ const Article = ({
         <TextContainer direction='column' fullWidth>
           <Title>{title}</Title>
           <Text>{text}</Text>
-          <Link>Read ></Link>
+          <Link>Read &gt;</Link>
         </TextContainer>
       </Container>
     </StyledContainer>

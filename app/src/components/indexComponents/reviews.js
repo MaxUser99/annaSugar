@@ -1,42 +1,59 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import Review from './review';
 import Container from '../container/container';
 import ContentWrapper from '../contentWrapper/contentWrapper';
 import Button from '../button/button';
+import { loadReviews } from '../../store/content/reviewActions';
 
 const PREVIEW_ITEMS_COUNT = 3;
 
-const Reviews = ({ reviews }) => (
-  <Container fullWidth>
-    <ContentWrapper direction='column' alignItems='center'>
-      <Title>Отзывы</Title>
-      <Container fullWidth justifyContent='center'>
-        {
-          reviews.slice(0, PREVIEW_ITEMS_COUNT).map(review => (
-            <Review key={review.id} review={review} />
-          ))
-        }
-        {
-          reviews.length > PREVIEW_ITEMS_COUNT &&
-          <Button>еще</Button>
-        }
-      </Container>
-    </ContentWrapper>
-  </Container>
-);
+const Reviews = ({ reviews, loadReviews }) => {
+  useEffect(() => {
+    loadReviews();
+  }, [ loadReviews ])
+
+  return (
+    <Container fullWidth>
+      <StyledWrapper direction='column' alignItems='center'>
+        <Title>Отзывы</Title>
+        <ReviewsContainer fullWidth justifyContent='center' alignItems='stretch'>
+          {
+            reviews.slice(0, PREVIEW_ITEMS_COUNT).map(review => (
+              <Review key={review.id} review={review} />
+            ))
+          }
+        </ReviewsContainer>
+        <Button>еще</Button>
+      </StyledWrapper>
+    </Container>
+  )
+}
+
+const StyledWrapper = styled(ContentWrapper)`
+  padding: 64px 0;
+`;
 
 const Title = styled.h2`
   font-family: "Cormorant Infant";
   font-weight: bold;
   font-size: 48px;
   line-height: 48px;
+  margin: 0 0 32px;
+`;
+
+const ReviewsContainer = styled(Container)`
+  & + button {
+    margin-top: 64px;
+  }
 `;
 
 export default connect(
-  () => ({
-    reviews: []
+  ({ content: { reviews: { data }}}) => ({
+    reviews: data
   }),
-  null
+  dispatch => ({
+    loadReviews: () => dispatch(loadReviews())
+  })
 )(Reviews);

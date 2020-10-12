@@ -3,11 +3,12 @@ import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
-import articlesReducer from './articles/reducer';
+// import articlesReducer from './articles/reducer';
+import contentReducer from './content/reducer';
 import userReducer from './user/reducer';
 
 const rootReducer = combineReducers({
-  articles: articlesReducer,
+  content: contentReducer,
   userData: userReducer
 });
 

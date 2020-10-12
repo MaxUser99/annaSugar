@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import Container from '../container/container';
 import ContentWrapper from '../contentWrapper/contentWrapper';
-import { loadArticles } from '../../store/articles/actions';
+import { loadArticles } from '../../store/content/articleActions';
 import Article from './article';
 import Button from '../button/button';
 
@@ -23,10 +23,7 @@ const Articles = ({ articles, loadArticles }) => {
             <Article key={article.date.toString()} article={article} />
           ))
         }
-        {
-          articles.length > PREVIEW_ITEMS_COUNT &&
-          <Button>все</Button>
-        }
+        <Button>все</Button>
       </ContentWrapper>
     </Container>
   );
@@ -41,7 +38,7 @@ const Title = styled.h2`
 `;
 
 export default connect(
-  ({articles: { data }}) => ({ 
+  ({content: { articles: { data }}}) => ({ 
     articles: data,
   }), 
   (dispatch) => ({

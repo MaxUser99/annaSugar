@@ -15,7 +15,7 @@ const Footer = () => (
       </ContentWrapper>
     </Block1>
     <Block2 fullWidth>
-      <ContentWrapper justifyContent='space-between' alignItems='center'>
+      <ContentWrapper maxWidth='wide' justifyContent='space-between' alignItems='center'>
         <Text>Anna Sugar&copy;</Text>
         <Text>All rights reserved</Text>
         <Container>
@@ -34,7 +34,6 @@ const Footer = () => (
 const Block1 = styled(Container)`
   background-color: ${({ theme }) => theme.color.darkBeige};
   padding: 64px 0;
-  margin-top: 64px;
 `;
 
 const Block2 = styled(Container)`
