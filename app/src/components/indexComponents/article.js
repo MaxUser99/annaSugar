@@ -6,21 +6,45 @@ import Container from '../container/container';
 const Article = ({
   article: { date, title, text, image },
   clickHandler
-}) => (
-  <StyledContainer direction='column' fullWidth>
-    <Date>{date.toString()}</Date>
-    <Container alignItems='stretch'>
-      <ImageWrapper>
-        <Image src={image} />
-      </ImageWrapper>
-      <TextContainer direction='column' fullWidth>
-        <Title>{title}</Title>
-        <Text>{text}</Text>
-        <Link>Read ></Link>
-      </TextContainer>
-    </Container>
-  </StyledContainer>
-);
+}) => {
+  const month = date.toLocaleDateString('EN-US', { month: 'long' });
+  const year = date.getFullYear();
+  const dayOfMonth = date.getDate();
+
+  let day;
+  switch (dayOfMonth) {
+    case 1:
+      day = '1st';
+      break;
+    case 2:
+      day = '2nd';
+      break;
+    case 3:
+      day = '3rd';
+      break;
+    default:
+      day = `${dayOfMonth}th`;
+      break;
+  }
+  // console.log('date: ', date, date.toLocaleDateString());
+  const dateString = `${month}, ${day} ${year}`;
+  // const dateString = '';
+  return (
+    <StyledContainer direction='column' fullWidth>
+      <Date>{dateString}</Date>
+      <Container alignItems='stretch'>
+        <ImageWrapper>
+          <Image src={image} />
+        </ImageWrapper>
+        <TextContainer direction='column' fullWidth>
+          <Title>{title}</Title>
+          <Text>{text}</Text>
+          <Link>Read ></Link>
+        </TextContainer>
+      </Container>
+    </StyledContainer>
+  );
+}
 
 const StyledContainer = styled(Container)`
   &:not(:last-child) {
@@ -36,6 +60,7 @@ const Date = styled.h3`
   line-height: 28px;
   color: ${({ theme }) => theme.text.default};
   margin: 0 0 31px;
+  padding-bottom: 3px;
 `;
 
 const TextContainer = styled(Container)`

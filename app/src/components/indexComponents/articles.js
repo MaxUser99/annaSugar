@@ -7,7 +7,7 @@ import { loadArticles } from '../../store/articles/actions';
 import Article from './article';
 import Button from '../button/button';
 
-const MAX_ARTICLES = 4;
+const PREVIEW_ITEMS_COUNT = 4;
 
 const Articles = ({ articles, loadArticles }) => {
   useEffect(() => {
@@ -19,12 +19,12 @@ const Articles = ({ articles, loadArticles }) => {
       <ContentWrapper direction='column' alignItems='center'>
         <Title>Статьи</Title>
         { 
-          articles.slice(0, MAX_ARTICLES).map(article => (
+          articles.slice(0, PREVIEW_ITEMS_COUNT).map(article => (
             <Article key={article.date.toString()} article={article} />
           ))
         }
         {
-          articles.length > MAX_ARTICLES &&
+          articles.length > PREVIEW_ITEMS_COUNT &&
           <Button>все</Button>
         }
       </ContentWrapper>
