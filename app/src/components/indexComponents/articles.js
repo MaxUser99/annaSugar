@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { navigate } from 'gatsby';
+import { useNavigate } from "@reach/router";
 import Container from '../container/container';
 import ContentWrapper from '../contentWrapper/contentWrapper';
 import { loadArticles } from '../../store/content/articleActions';
@@ -11,6 +11,8 @@ import Button from '../button/button';
 const PREVIEW_ITEMS_COUNT = 4;
 
 const Articles = ({ articles, loadArticles, page }) => {
+  const navigate = useNavigate();
+
   const buttonClickHandler = () => {
     navigate('/blog');
   }

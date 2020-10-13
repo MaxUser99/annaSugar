@@ -1,5 +1,5 @@
-import React from 'react';
-import { navigate } from 'gatsby';
+import React, { useEffect } from 'react';
+import { useNavigate } from "@reach/router";
 import { connect } from 'react-redux';
 
 const PrivateRoute = ({
@@ -7,12 +7,17 @@ const PrivateRoute = ({
   isLoggedIn,
   ...rest
 }) => {
-  if (!isLoggedIn) {
-    navigate('/admin/login');
-    return null
-  }
+  const navigate = useNavigate();
 
-  return <Component {...rest} />
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate('/admin/login');
+    }
+  }, [isLoggedIn]);
+
+  return isLoggedIn
+    ? <Component {...rest} />
+    : null;
 }
 
 export default connect(

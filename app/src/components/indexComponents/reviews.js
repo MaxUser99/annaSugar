@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { navigate } from 'gatsby';
+import { useNavigate } from "@reach/router";
 import Review from './review';
 import Container from '../container/container';
 import ContentWrapper from '../contentWrapper/contentWrapper';
@@ -11,6 +11,8 @@ import { loadReviews } from '../../store/content/reviewActions';
 const PREVIEW_ITEMS_COUNT = 3;
 
 const Reviews = ({ reviews, loadReviews, page }) => {
+  const navigate = useNavigate();
+
   const buttonClickHandler = () => {
     navigate('/reviews');
   };
