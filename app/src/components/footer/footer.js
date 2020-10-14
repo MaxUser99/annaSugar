@@ -7,7 +7,7 @@ import vkIcon from '../../assets/icons/vk-black.svg';
 import instaIcon from '../../assets/icons/instagram.svg';
 
 const Footer = () => (
-  <>
+  <AbsoluteBlock id='footer'>
     <Block1 fullWidth>
       <ContentWrapper direction='column' alignItems='center'>
         <Header>Хочешь узнать о всем первым</Header>
@@ -32,8 +32,14 @@ const Footer = () => (
         </FooterItem>
       </StyledContentWrapper>
     </Block2>
-  </>
+  </AbsoluteBlock>
 );
+
+const AbsoluteBlock = styled.div`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+`;
 
 const FooterItem = styled(Container)`
   width: 130px;
@@ -42,6 +48,7 @@ const FooterItem = styled(Container)`
 const Block1 = styled(Container)`
   background-color: ${({ theme }) => theme.color.darkBeige};
   padding: 64px 0;
+  // margin-top: auto;
 `;
 
 const Block2 = styled(Container)`

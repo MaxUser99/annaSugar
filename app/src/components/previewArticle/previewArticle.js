@@ -1,12 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { Link as BrowserLink } from 'gatsby';
+import { connect } from 'react-redux';
+import { setReviewArticle } from '../../store/content/articleActions';
 import Container from '../container/container';
 
-const Article = ({
-  article: { date, title, text, image },
-  clickHandler
-}) => {
+const Article = ({ article, setReviewArticle }) => {
+  const linkClickHandler = () => setReviewArticle(article);
+
+  const { id, date, title, text, image } = article;
   const month = date.toLocaleDateString('EN-US', { month: 'long' });
   const year = date.getFullYear();
   const dayOfMonth = date.getDate();
@@ -39,7 +42,7 @@ const Article = ({
         <TextContainer direction='column' fullWidth>
           <Title>{title}</Title>
           <Text>{text}</Text>
-          <Link>Read &gt;</Link>
+          <Link onClick={linkClickHandler} to={`/blog/${id}`}>Read &gt;</Link>
         </TextContainer>
       </Container>
     </StyledContainer>
@@ -93,9 +96,12 @@ const Text = styled.p`
   line-height: 28px;
 `;
 
-const Link = styled.a`
+const Link = styled(BrowserLink)`
   padding-top: 32px;
   margin-top: auto;
+  text-decoration: none;
+  font-size: 14px;
+  color: ${({ theme }) => theme.text.default};
 `;
 
 Article.propTypes = {
@@ -108,4 +114,9 @@ Article.propTypes = {
   })
 };
 
-export default Article;
+export default connect(
+  null,
+  dispatch => ({
+    setReviewArticle: article => dispatch(setReviewArticle(article)),
+  })
+)(Article);

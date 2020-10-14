@@ -1,27 +1,18 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import Breadscrumb from '../components/breadscrumb/breadscrumb';
-import Button from '../components/button/button';
+import { Router } from '@reach/router';
 import Container from '../components/container/container';
 import ContentWrapper from '../components/contentWrapper/contentWrapper';
 import Layout from '../components/layout/layout';
-import PreviewArticle from '../components/previewArticle/previewArticle';
 import { loadArticles } from '../store/content/articleActions';
+import BlogIndex from '../components/blog/index';
+import BlogArticle from '../components/blog/BlogArticle';
+import { useEmptySpace } from '../hooks/useEmptySpace';
 
-const breadscrumbs = [
-  {
-    title: 'Главная',
-    href: '/',
-    disabled: false,
-  }, {
-    title: 'Статьи',
-    href: '/blog',
-    disabled: true,
-  }
-];
+const Blog = ({ loadArticles, page }) => {
+  const minHeight = useEmptySpace(74); // 74 is padding.bottom + padding.top of StyledWrapper
 
-const Blog = ({ articles, loadArticles, page }) => {
   useEffect(() => {
     console.log('should load articles: ', page === null, page)
     if (page === null) loadArticles(0);
@@ -31,42 +22,31 @@ const Blog = ({ articles, loadArticles, page }) => {
     <Layout>
       <Container fullWidth justifyContent='center'>
         <StyledWrapper alignItems='center' direction='column'>
-          <Breadscrumb breadscrumbs={breadscrumbs} />
-          <Title>Статьи</Title>
-          {
-            articles.map(article => (
-              <PreviewArticle key={article.id} article={article} />
-            ))
-          }
-          <StyledButton>больше</StyledButton>
+          <StyledRouter $minHeight={minHeight} basepath='/blog' >
+            <BlogIndex path='/' />
+            <BlogArticle path='/:articleId' />
+          </StyledRouter>
         </StyledWrapper>
       </Container>
-    </Layout>
+    </Layout> 
   );
 };
 
-const StyledButton = styled(Button)`
-  margin-top: 99px;
+const StyledRouter = styled(Router)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: ${({ $minHeight }) => (`${$minHeight}px`)};
 `;
 
 const StyledWrapper = styled(ContentWrapper)`
   padding-top: 10px;
   padding-bottom: 64px;
-  // padding: 10px 0 64px;
-`;
-
-const Title = styled.h1`
-  font-family: "Cormorant Infant";
-  font-style: normal;
-  font-weight: bold;
-  font-size: 68px;
-  line-height: 68px;
-  margin: 32px 0;
 `;
 
 export default connect(
-  ({ content: { articles: { data, page }}}) => ({
-    articles: data,
+  ({ content: { articles: { page }}}) => ({
     page
   }),
   dispatch => ({

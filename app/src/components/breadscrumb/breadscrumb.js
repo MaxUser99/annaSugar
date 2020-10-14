@@ -15,7 +15,6 @@ const Breadscrumb = ({ breadscrumbs }) => {
       {
         breadscrumbs.map(({ title, href, disabled }, i) => {
           const showSlash = i < breadscrumbs.length - 1;
-          console.log('key: ', href);   
           return <React.Fragment key={`${href}${i}`}>
             <Item>
               <Link

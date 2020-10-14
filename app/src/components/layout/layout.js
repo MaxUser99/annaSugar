@@ -16,6 +16,9 @@ const StyledContainer = styled(Container)`
   min-height: 100vh;
   width: 100%;
   background-color: ${({ theme }) => theme.color.beige};
+  padding-bottom: 385px;
+  position: relative;
+  box-sizing: border-box;
 `;
 
 export default Layout;

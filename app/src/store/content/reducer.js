@@ -1,9 +1,10 @@
 import RESOURCE_STATUS from '../../constants/resourceStatus';
-import { PUSH_ARTICLES, SET_ARTICLES_LOADING } from './articleActions';
+import { PUSH_ARTICLES, SET_ARTICLES_LOADING, SET_REVIEW_ARTICLE } from './articleActions';
 import { PUSH_REVIEWS, SET_REVIEWS_LOADING } from './reviewActions';
 
 const LOADABLE_CONTENT = {
   data: [],
+  reviewItem: null,
   status: RESOURCE_STATUS.INITIAL,
   error: null,
   page: null
@@ -33,6 +34,13 @@ export default (state = initialState, action) => {
         page: action.payload.page
       }
     };
+    case SET_REVIEW_ARTICLE: return {
+      ...state,
+      articles: {
+        ...state.articles,
+        reviewItem: action.payload
+      }
+    }
 
     case SET_REVIEWS_LOADING: return {
       ...state,
