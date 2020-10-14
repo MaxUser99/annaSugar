@@ -2,19 +2,18 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Router } from '@reach/router';
+import { loadArticles } from '../store/content/articleActions';
+import { useEmptySpace } from '../hooks/useEmptySpace';
 import Container from '../components/container/container';
 import ContentWrapper from '../components/contentWrapper/contentWrapper';
 import Layout from '../components/layout/layout';
-import { loadArticles } from '../store/content/articleActions';
 import BlogIndex from '../components/blog/index';
 import BlogArticle from '../components/blog/BlogArticle';
-import { useEmptySpace } from '../hooks/useEmptySpace';
 
 const Blog = ({ loadArticles, page }) => {
   const minHeight = useEmptySpace(74); // 74 is padding.bottom + padding.top of StyledWrapper
 
   useEffect(() => {
-    console.log('should load articles: ', page === null, page)
     if (page === null) loadArticles(0);
   }, []);
 

@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { useNavigate } from "@reach/router";
-import Review from './review';
+import { loadReviews } from '../../store/content/reviewActions';
+import ReviewPreview from '../reviewPreview/reviewPreview';
 import Container from '../container/container';
 import ContentWrapper from '../contentWrapper/contentWrapper';
 import Button from '../button/button';
-import { loadReviews } from '../../store/content/reviewActions';
 
 const PREVIEW_ITEMS_COUNT = 3;
 
@@ -14,7 +14,7 @@ const Reviews = ({ reviews, loadReviews, page }) => {
   const navigate = useNavigate();
 
   const buttonClickHandler = () => {
-    navigate('/reviews');
+    navigate('/reviews/');
   };
 
   useEffect(() => {
@@ -25,10 +25,10 @@ const Reviews = ({ reviews, loadReviews, page }) => {
     <Container fullWidth>
       <StyledWrapper direction='column' alignItems='center'>
         <Title>Отзывы</Title>
-        <ReviewsContainer fullWidth justifyContent='center' alignItems='stretch'>
+        <ReviewsContainer fullWidth justifyContent='space-between' alignItems='stretch'>
           {
             reviews.slice(0, PREVIEW_ITEMS_COUNT).map(review => (
-              <Review key={review.id} review={review} />
+              <ReviewPreview key={review.id} review={review} />
             ))
           }
         </ReviewsContainer>

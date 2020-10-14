@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import Container from '../container/container';
 import zoomIcon from '../../assets/icons/zoom.svg';
 
-const Review = ({ review: { title, image, text } }) => (
-  <StyledContainer direction='column' fullWidth>
+const Review = ({ className, review: { id, title, image, text } }) => (
+  <StyledContainer className={className} direction='column' fullWidth>
     <ImageWrapper fullWidth alignItems='center' justifyContent='center'>
       <ZoomBtn>
         <Image src={zoomIcon} alt='' />
@@ -15,18 +15,21 @@ const Review = ({ review: { title, image, text } }) => (
     </ImageWrapper>
     <Title>{title}</Title>
     <Text>{text}</Text>
-    <Link>Read &gt;</Link>
+    <Link to={`/reviews/${id}`}>Read &gt;</Link>
   </StyledContainer>
 );
 
 const StyledContainer = styled(Container)`
-  &:not(:last-child) {
-    margin-right: 26px;
-  }
+  max-width: 302px;
+  // &:not(:last-child) {
+  //   margin-right: 26px;
+  // }
 `;
 
 const ImageWrapper = styled(Container)`
-  max-height: 200px;
+  // max-height: 192px;
+  // height: 100%;
+  height: 152px;
   background-color ${({ theme }) => theme.color.darkBeige};
   position: relative;
 `;
