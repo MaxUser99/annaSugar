@@ -39,7 +39,8 @@ const Reviews = ({ reviews, loadReviews, page }) => {
 }
 
 const StyledWrapper = styled(ContentWrapper)`
-  padding: 64px 0;
+  padding-top: 64px;
+  padding-bottom: 64px;
 `;
 
 const Title = styled.h2`

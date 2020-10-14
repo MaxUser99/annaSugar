@@ -90,7 +90,8 @@ const Fab = styled.button`
   background: transparent;
   margin-top: auto;
   position: absolute;
-  right: 3.25%;
+  // right: 3.25%;
+  right: 5%;
   top: 517px;
   width: 98px;
   height: 98px;

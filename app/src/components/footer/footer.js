@@ -15,21 +15,29 @@ const Footer = () => (
       </ContentWrapper>
     </Block1>
     <Block2 fullWidth>
-      <ContentWrapper maxWidth='wide' justifyContent='space-between' alignItems='center'>
-        <Text>Anna Sugar&copy;</Text>
-        <Text>All rights reserved</Text>
-        <Container>
+      <StyledContentWrapper maxWidth='wide' justifyContent='space-between' alignItems='center'>
+        <FooterItem>
+          <Text>Anna Sugar&copy;</Text>
+        </FooterItem>
+        <FooterItem justifyContent='center'>
+          <Text>All rights reserved</Text>
+        </FooterItem>
+        <FooterItem alignItems='center' justifyContent='flex-end'>
           <SocialButton>
             <img src={vkIcon} />
           </SocialButton>
           <SocialButton>
             <img src={instaIcon} />
           </SocialButton>
-        </Container>
-      </ContentWrapper>
+        </FooterItem>
+      </StyledContentWrapper>
     </Block2>
   </>
 );
+
+const FooterItem = styled(Container)`
+  width: 130px;
+`;
 
 const Block1 = styled(Container)`
   background-color: ${({ theme }) => theme.color.darkBeige};
@@ -37,7 +45,12 @@ const Block1 = styled(Container)`
 `;
 
 const Block2 = styled(Container)`
-  padding: 26px 0 39px;
+  // padding: 26px 122px 39px;
+padding: 26px 0 39px;
+`;
+
+const StyledContentWrapper = styled(ContentWrapper)`
+  padding: 0 122px;
 `;
 
 const Header = styled.h2`

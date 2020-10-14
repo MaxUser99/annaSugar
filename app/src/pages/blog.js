@@ -29,16 +29,18 @@ const Blog = ({ articles, loadArticles, page }) => {
 
   return (
     <Layout>
-      <StyledWrapper alignItems='center' direction='column'>
-        <Breadscrumb breadscrumbs={breadscrumbs} />
-        <Title>Статьи</Title>
-        {
-          articles.map(article => (
-            <PreviewArticle key={article.id} article={article} />
-          ))
-        }
-        <StyledButton>больше</StyledButton>
-      </StyledWrapper>
+      <Container fullWidth justifyContent='center'>
+        <StyledWrapper alignItems='center' direction='column'>
+          <Breadscrumb breadscrumbs={breadscrumbs} />
+          <Title>Статьи</Title>
+          {
+            articles.map(article => (
+              <PreviewArticle key={article.id} article={article} />
+            ))
+          }
+          <StyledButton>больше</StyledButton>
+        </StyledWrapper>
+      </Container>
     </Layout>
   );
 };
@@ -48,7 +50,9 @@ const StyledButton = styled(Button)`
 `;
 
 const StyledWrapper = styled(ContentWrapper)`
-  padding: 10px 0 64px;
+  padding-top: 10px;
+  padding-bottom: 64px;
+  // padding: 10px 0 64px;
 `;
 
 const Title = styled.h1`
