@@ -23,7 +23,7 @@ const Input = ({
 );
 
 const StyledContainer = styled(Container)`
-  &:not(:last-child) {
+  &:not(:last-of-type) {
     margin-bottom: 40px;
   }
 `;
