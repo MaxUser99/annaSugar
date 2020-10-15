@@ -8,8 +8,11 @@ import ContentWrapper from '../components/contentWrapper/contentWrapper';
 import ReviewsIndex from '../components/reviews/index';
 import ReviewPage from '../components/reviews/reviewPage';
 import Layout from '../components/layout/layout';
+import { useEmptySpace } from '../hooks/useEmptySpace';
 
 const Reviews = ({ loadReviews, page }) => {
+  const minHeight = useEmptySpace(74);
+
   useEffect(() => {
     if (page === null) loadReviews(0);
   }, []);
@@ -18,7 +21,7 @@ const Reviews = ({ loadReviews, page }) => {
     <Layout>
       <Container fullWidth justifyContent='center'>
         <StyledWrapper alignItems='center' direction='column'>
-          <StyledRouter basepath='/reviews'>
+          <StyledRouter $minHeight={minHeight} basepath='/reviews'>
             <ReviewsIndex path='/' />
             <ReviewPage path='/:reviewId' />
           </StyledRouter>
@@ -34,6 +37,7 @@ const StyledRouter = styled(Router)`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  min-height: ${({ $minHeight }) => $minHeight}px;
 `;
 
 const StyledWrapper = styled(ContentWrapper)`

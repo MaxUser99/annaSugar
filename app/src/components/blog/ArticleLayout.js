@@ -39,6 +39,7 @@ const Date = styled.p`
 const ImageContainer = styled(Container)`
   max-height: 512px;
   margin: 32px 0;
+  overflow: hidden;
 `;
 
 const Text = styled.p`

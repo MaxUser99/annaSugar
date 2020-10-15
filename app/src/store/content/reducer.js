@@ -1,6 +1,6 @@
 import RESOURCE_STATUS from '../../constants/resourceStatus';
 import { PUSH_ARTICLES, SET_ARTICLES_LOADING, SET_REVIEW_ARTICLE } from './articleActions';
-import { PUSH_REVIEWS, SET_REVIEWS_LOADING } from './reviewActions';
+import { PUSH_REVIEWS, SET_REVIEWS_LOADING, SET_REVIEW_ITEM } from './reviewActions';
 
 const LOADABLE_CONTENT = {
   data: [],
@@ -17,6 +17,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    // article action cases
     case SET_ARTICLES_LOADING: return {
       ...state,
       articles: {
@@ -42,6 +43,7 @@ export default (state = initialState, action) => {
       }
     }
 
+    // review action cases
     case SET_REVIEWS_LOADING: return {
       ...state,
       reviews: {
@@ -59,6 +61,13 @@ export default (state = initialState, action) => {
         page: action.payload.page
       }
     };
+    case SET_REVIEW_ITEM: return {
+      ...state,
+      reviews: {
+        ...state.reviews,
+        reviewItem: action.payload
+      }
+    }
 
     default: return state;
   }

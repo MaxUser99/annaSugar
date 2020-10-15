@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { loadReviewArticle, setReviewArticle } from '../../store/content/articleActions'; 
 import Breadscrumb from '../breadscrumb/breadscrumb';
 import ArticleLayout from './ArticleLayout';
-import Loader from './loader';
+import Loader from '../loader/loader';
 import Button from '../button/button';
 
 const baseBreadscrumbs = [
@@ -80,12 +80,6 @@ export default connect(
   ({ content: { articles: { reviewItem }}}) => ({
     article: reviewItem
   }),
-  // (dispatch, { articleId, navigate }) => {
-  //   return {
-  //   loadReviewArticle: () => dispatch(loadReviewArticle(parseInt(articleId, 10))),
-  //   clearReviewArticle: () => dispatch(setReviewArticle(null)),
-  //   navigate
-  // }}
   (dispatch, { articleId, navigate }) => ({
     loadReviewArticle: () => dispatch(loadReviewArticle(parseInt(articleId, 10))),
     clearReviewArticle: () => dispatch(setReviewArticle(null)),

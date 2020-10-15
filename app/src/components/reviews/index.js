@@ -25,7 +25,7 @@ const ReviewIndex = ({ reviews }) => (
     <Container alignItems='stretch' justifyContent='space-between' fullWidth flexWrap>
       {
         reviews.map(review => (
-          <StyledPreview id={review.id} review={review} />
+          <StyledPreview key={review.id} review={review} />
         ))
       }
     </Container>
