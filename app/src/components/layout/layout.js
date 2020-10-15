@@ -3,9 +3,11 @@ import styled from 'styled-components';
 import Header from '../header/header';
 import Footer from '../footer/footer';
 import Container from '../container/container';
+import ImageModal from '../ImageModal/imageModal';
 
 const Layout = ({ children }) => (
   <StyledContainer direction='column'>
+    <ImageModal />
     <Header />
       { children}
     <Footer />

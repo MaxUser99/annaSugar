@@ -1,14 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link as BrowserLink } from 'gatsby';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Container from '../container/container';
 import zoomIcon from '../../assets/icons/zoom.svg';
+import { MODAL_NAMES } from '../../constants/modals';
+import { openModal } from '../../store/ui/uiActions';
 
-const Review = ({ className, review: { id, title, image, text } }) => (
+const Review = ({
+  className,
+  zoomClickHandler,
+  review: { id, title, image, text }
+}) => (
   <StyledContainer className={className} direction='column' fullWidth>
     <ImageWrapper fullWidth alignItems='center' justifyContent='center'>
-      <ZoomBtn>
+      <ZoomBtn onClick={zoomClickHandler}>
         <Image src={zoomIcon} alt='' />
       </ZoomBtn>
       <Image src={image} alt='' />
@@ -90,4 +97,9 @@ Review.propTypes = {
   })
 };
 
-export default Review;
+export default connect(
+  null,
+  (dispatch, { review: { image }}) => ({
+    zoomClickHandler: () => dispatch(openModal(MODAL_NAMES.ZOOM_IMAGE, image))
+  })
+)(Review);
