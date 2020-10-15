@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useForm } from 'react-hook-form';
 import Container from '../components/container/container';
 import ContentWrapper from '../components/contentWrapper/contentWrapper';
 import Layout from '../components/layout/layout';
@@ -9,50 +10,75 @@ import WhatsupIcon from '../assets/icons/whatsup-btn.svg';
 import MessangerIcon from '../assets/icons/messanger-btn.svg';
 import Input from '../components/input/input';
 
-const Contact = () => (
-  <Layout>
-    <Container fullWidth>
-      <StyledWrapper direction='column' alignItems='center'>
-        <Header>Если у Вас остались вопросы?</Header>
-        <SubHeader>( Do you have any questions? )</SubHeader>
-        <Buttons justifyContent='space-around' fullWidth>
-          <ButtonWrapper direction='column'>
-            <SocialButton>
-              <img src={TelegramIcon} alt='' />
-            </SocialButton>
-            <Caption>Подписаться на канал</Caption>
-          </ButtonWrapper>
-          <ButtonWrapper direction='column'>
-            <SocialButton>
-              <img src={WhatsupIcon} alt='' />
-            </SocialButton>
-            <Caption>Подписаться на канал</Caption>
-          </ButtonWrapper>
-          <ButtonWrapper direction='column'>
-            <SocialButton>
-              <img src={MessangerIcon} alt='' />
-            </SocialButton>
-            <Caption>Подписаться на канал</Caption>
-          </ButtonWrapper>
-        </Buttons>
-        <FormTitle>Свяжитесь с нами,<br />будем рады Вам помочь!</FormTitle>
-        <Input
-          name='email'
-          placeholder='example@email.com'
-          label='Почта'
-        />
-        <Input
-          name='message'
-          placeholder='Напиши свое сообщение'
-          label='Сообщение'
-        />
-        <StyledSubmitButton>отправить</StyledSubmitButton>
-      </StyledWrapper>
-    </Container>
-  </Layout>
-);
+const Contact = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    errors
+  } = useForm();
 
-const StyledSubmitButton = styled(Button)`
+  const submitHandler = data => console.log('data: ', data); 
+
+  return (
+    <Layout>
+      <Container fullWidth>
+        <StyledWrapper direction='column' alignItems='center'>
+          <Header>Если у Вас остались вопросы?</Header>
+          <SubHeader>( Do you have any questions? )</SubHeader>
+          <Buttons justifyContent='space-around' fullWidth>
+            <ButtonWrapper direction='column'>
+              <SocialButton>
+                <img src={TelegramIcon} alt='' />
+              </SocialButton>
+              <Caption>Подписаться на канал</Caption>
+            </ButtonWrapper>
+            <ButtonWrapper direction='column'>
+              <SocialButton>
+                <img src={WhatsupIcon} alt='' />
+              </SocialButton>
+              <Caption>Подписаться на канал</Caption>
+            </ButtonWrapper>
+            <ButtonWrapper direction='column'>
+              <SocialButton>
+                <img src={MessangerIcon} alt='' />
+              </SocialButton>
+              <Caption>Подписаться на канал</Caption>
+            </ButtonWrapper>
+          </Buttons>
+          <Form onSubmit={handleSubmit(submitHandler)}>
+            <FormTitle>Свяжитесь с нами,<br />будем рады Вам помочь!</FormTitle>
+            <Input
+              name='email'
+              type='text'
+              placeholder='example@email.com'
+              label='Почта'
+              inputRef={register({ required: true })}
+              error={'email' in errors}
+            />
+            <Input
+              name='message'
+              placeholder='Напиши свое сообщение'
+              label='Сообщение'
+              type='text'
+              inputRef={register({ required: true })}
+              error={'message' in errors}
+            />
+            <SubmitButton type='submit'>отправить</SubmitButton>
+          </Form>
+        </StyledWrapper>
+      </Container>
+    </Layout>
+  );
+};
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const SubmitButton = styled(Button)`
   margin-top: 64px;
 `
 
