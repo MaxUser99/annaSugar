@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { Link } from 'gatsby';
 import Container from '../container/container';
 import cartIcon from '../../assets/icons/cart.svg';
 
-const CatalogItem = ({ item: { image, name, brief, price}}) => {
+const CatalogItem = ({ item: { id, image, name, brief, price}}) => {
   const [ imageLoaded, setImageLoaded ] = useState(false);
   const [ amount, cents ] = price.toFixed(2).split('.');
 
@@ -15,13 +16,13 @@ const CatalogItem = ({ item: { image, name, brief, price}}) => {
         <img onLoad={imageLoadHandler} src={image} alt='' />
       </ImageWrapper>
       <Content alignItems='stretch' direction='column' fullWidth>
-        <Name>{name}</Name>
+        <Name to={id}>{name}</Name>
         <Brief>{brief}</Brief>
         <Purchase alignItems='center' justifyContent='space-between' fullWidth>
           <Price>
             <Amount>{amount}</Amount>
             <Cents>.{cents} &#8381;</Cents>
-          </Price>
+          </Price>1
           <Button>
             <CartIcon src={cartIcon} alt='' />
             <span>Консультация</span>
@@ -62,7 +63,7 @@ const Purchase = styled(Container)`
   margin-top: auto;
 `;
 
-const Name = styled.h3`
+const Name = styled(Link)`
   font-family: "Cormorant Infant";
   font-style: normal;
   font-weight: bold;
@@ -70,9 +71,10 @@ const Name = styled.h3`
   line-height: 32px;
   margin: 32px 0 20px;
   cursor: pointer;
-  color: ${({ theme }) => theme.text.header};
   position: relative;
   transition: 0.3s;
+  text-decoration: none;
+  color: ${({ theme }) => theme.text.header};
   &::after {
     content: '>';
     position: absolute;
