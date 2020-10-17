@@ -2,9 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const Container = (props) => (
-  <StyledDiv {...props} />
-);
+const Container = React.forwardRef((props, ref) => <StyledDiv ref={ref} {...props} />);
 
 const StyledDiv = styled.div`
   display: flex;
