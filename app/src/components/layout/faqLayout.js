@@ -5,18 +5,11 @@ import Container from '../container/container';
 import ContentWrapper from '../contentWrapper/contentWrapper';
 import TabMenu from '../tabMenu/tabMenu';
 
-const tabs = [
-  { title: 'Астро', href: 'astro' },
-  { title: 'Браслеты', href: 'bracelets' },
-  { title: 'Четки', href: 'beads' },
-  { title: 'Access bars', href: 'bars' },
-];
-
-const FaqLayout = ({ children }) => (
+const FaqLayout = ({ title, tabs, children }) => (
   <StyledLayout>
     <HeaderBlock  fullWidth>
       <ContentWrapper direction='column' alignItems='center'>
-        <PageTitle>Вопросы</PageTitle>
+        <PageTitle>{title}</PageTitle>
         <TabMenu tabs={tabs} />
       </ContentWrapper>
     </HeaderBlock>
@@ -40,6 +33,12 @@ const HeaderBlock = styled(Container)`
 
 const PageTitle = styled.h1`
   margin: 20px 0 64px;
+  font-family: Cormorant Infant;
+  font-weight: bold;
+  font-size: 68px;
+  line-height: 68px;
+  text-align: center;
+  color: ${({ theme }) => theme.text.header};
 `;
 
 export default FaqLayout;

@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from '../../components/layout/faqLayout';
 import ExpansionPanel from '../../components/expansionPanel/expansionPanel';
+import { faqLinks } from '../../constants/links';
 
 const data = [
   {
@@ -18,8 +19,9 @@ const data = [
       В случае форс-мажора консультацию можно перенести, но не позднее чем за 2 суток до встречи.`
   }
 ];
+
 const Bracelets = () => (
-  <Layout>
+  <Layout title='Вопросы' tabs={faqLinks}>
     {
       data.map(({ title, text }, i) => (
         <ExpansionPanel key={i} title={title} text={text} />
