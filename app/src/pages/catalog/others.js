@@ -1,32 +1,51 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { loadOthers } from '../../store/content/catalogActions';
-import { catalogLinks } from '../../constants/links';
-import Layout from '../../components/layout/faqLayout';
-import CatalogItem from '../../components/catalogItem/catalogItem';
+import { Router } from '@reach/router';
+import styled from 'styled-components';
+import { loadOthers, setReviewOther, loadOthersItem } from '../../store/content/catalogActions';
+import CatalogItems from '../../components/catalogItems/catalogItems';
+import ItemPage from '../../components/catalogItems/itemPage';
 
-const Others = ({ others, page, loadOthers }) => {
+const Others = ({
+  others,
+  page,
+  loadOthers,
+  reviewItem,
+  loadReviewItem
+}) => {
   useEffect(() => {
     if (page === null) loadOthers(0);
   }, []);
 
+  const clearHandler = () => setReviewOther(null);
+
   return (
-    <Layout title='Каталог' tabs={catalogLinks}>
-      {
-        others.map(item => (
-          <CatalogItem key={item.id} item={item} />
-        ))
-      }
-    </Layout>
+    <StyledRouter basepath='/catalog/others'>
+      <CatalogItems path='/' onItemClick={setReviewOther} items={others} />
+      <ItemPage
+        path='/:itemId'
+        clearHandler={clearHandler}
+        reviewItem={reviewItem}
+        loadItem={loadReviewItem}
+      />
+    </StyledRouter>
   );
 }
 
+const StyledRouter = styled(Router)`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
 export default connect(
-  ({ content: { others: { data, page }}}) => ({
+  ({ content: { others: { reviewItem, data, page }}}) => ({
     others: data,
-    page
+    page,
+    reviewItem
   }),
   dispatch => ({
-    loadOthers: page => dispatch(loadOthers(page))
+    loadOthers: page => dispatch(loadOthers(page)),
+    loadReviewItem: id => dispatch(loadOthersItem(id))
   })
 )(Others);

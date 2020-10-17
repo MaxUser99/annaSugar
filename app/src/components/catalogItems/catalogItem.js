@@ -4,11 +4,13 @@ import { Link } from 'gatsby';
 import Container from '../container/container';
 import cartIcon from '../../assets/icons/cart.svg';
 
-const CatalogItem = ({ item: { id, image, name, brief, price}}) => {
+const CatalogItem = ({ item, onClick }) => {
+  const { id, image, name, brief, price } = item;
   const [ imageLoaded, setImageLoaded ] = useState(false);
   const [ amount, cents ] = price.toFixed(2).split('.');
 
   const imageLoadHandler = () => setImageLoaded(true);
+  const nameClickHandler = () => onClick(item);
 
   return (
     <Wrapper alignItems='stretch' justifyContent='space-between' fullWidth>
@@ -16,13 +18,13 @@ const CatalogItem = ({ item: { id, image, name, brief, price}}) => {
         <img onLoad={imageLoadHandler} src={image} alt='' />
       </ImageWrapper>
       <Content alignItems='stretch' direction='column' fullWidth>
-        <Name to={id}>{name}</Name>
+        <Name onClick={nameClickHandler} to={id}>{name}</Name>
         <Brief>{brief}</Brief>
         <Purchase alignItems='center' justifyContent='space-between' fullWidth>
           <Price>
             <Amount>{amount}</Amount>
             <Cents>.{cents} &#8381;</Cents>
-          </Price>1
+          </Price>
           <Button>
             <CartIcon src={cartIcon} alt='' />
             <span>Консультация</span>

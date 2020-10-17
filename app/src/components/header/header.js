@@ -13,9 +13,9 @@ const Header = () => (
       </FixedWidthContainer>
       <Container justifyContent='center'>
         <Link to='/'>Главная</Link>
-        <Link to='/catalog/bracelets'>Каталог</Link>
+        <Link to='/catalog'>Каталог</Link>
         <Link to='/consult'>Консультации</Link>
-        <Link to='/faq/astro'>Вопросы</Link>
+        <Link to='/faq'>Вопросы</Link>
         <Link to='/contact'>Контакты</Link>
       </Container>
       <FixedWidthContainer justifyContent='flex-end'>

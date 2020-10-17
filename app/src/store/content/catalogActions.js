@@ -103,7 +103,7 @@ function itemLoader(id, contentType) {
     const item = mockBracelets.find(x => x.id === id);
     const transformedItem = item
     ? {
-      ...x,
+      ...item,
       image: mockBraceletImage
     }
     : null;

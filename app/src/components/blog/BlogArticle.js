@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { useLoading } from '../../hooks/useLoading';
 import { loadReviewArticle, setReviewArticle } from '../../store/content/articleActions'; 
 import Breadscrumb from '../breadscrumb/breadscrumb';
 import ArticleLayout from './ArticleLayout';
@@ -25,8 +26,7 @@ const BlogArticle = ({
   clearReviewArticle,
   navigate
 }) => {
-  const [ shouldRedirect, setRedirect ] = useState(false);
-  const [ isArticleLoading, setLoading ] = useState(false);
+  const { shouldRedirect, isLoading } = useLoading(!article, loadReviewArticle);
 
   const breadscrumbs = useMemo(() => {
     const title = article
@@ -36,16 +36,7 @@ const BlogArticle = ({
     return [...baseBreadscrumbs, { title, href: '#', disabled: true }];
   }, [ article ]);
 
-  useEffect(() => {
-    const loadArticle = async () => {
-      setLoading(true);
-      const article = await loadReviewArticle();
-      setLoading(false);
-      if (!article) setRedirect(true);
-    }
-    if (!article) loadArticle();
-    return () => clearReviewArticle();
-  }, []);
+  useEffect(() => clearReviewArticle, []);
 
   const redirectClickHandler = () => navigate('/blog');
 
@@ -53,7 +44,7 @@ const BlogArticle = ({
     <>
       <Breadscrumb breadscrumbs={breadscrumbs} />
       { article && <ArticleLayout article={article} /> }
-      { isArticleLoading && <StyledLoader /> }
+      { isLoading && <StyledLoader /> }
       {
         shouldRedirect && <>
           <ErrorText>such article doesnt exist</ErrorText>
