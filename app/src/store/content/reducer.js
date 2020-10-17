@@ -35,6 +35,7 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
+  console.log('actioN: ', action)
   switch (action.type) {
     // article action cases
     case SET_ARTICLES_LOADING: return {
@@ -102,7 +103,7 @@ export default (state = initialState, action) => {
       bracelets: {
         ...state.bracelets,
         status: RESOURCE_STATUS.LOADED,
-        data: [...state.bracelets.date, ...action.payload.data],
+        data: [...state.bracelets.data, ...action.payload.data],
         page: action.payload.page
       }
     };
@@ -128,7 +129,7 @@ export default (state = initialState, action) => {
       beads: {
         ...state.beads,
         status: RESOURCE_STATUS.LOADED,
-        data: [...state.beads.date, ...action.payload.data],
+        data: [...state.beads.data, ...action.payload.data],
         page: action.payload.page
       }
     };
@@ -154,7 +155,7 @@ export default (state = initialState, action) => {
       kindles: {
         ...state.kindles,
         status: RESOURCE_STATUS.LOADED,
-        data: [...state.kindles.date, ...action.payload.data],
+        data: [...state.kindles.data, ...action.payload.data],
         page: action.payload.page
       }
     };
@@ -180,7 +181,7 @@ export default (state = initialState, action) => {
       others: {
         ...state.others,
         status: RESOURCE_STATUS.LOADED,
-        data: [...state.others.date, ...action.payload.data],
+        data: [...state.others.data, ...action.payload.data],
         page: action.payload.page
       }
     };

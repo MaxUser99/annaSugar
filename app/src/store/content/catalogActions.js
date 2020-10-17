@@ -39,32 +39,32 @@ export const setReviewBead = item => ({ type: SET_REVIEW_BEAD, payload: item});
 export const setReviewOther = item => ({ type: SET_REVIEW_OTHER, payload: item});
 
 export const loadBracelets = page => itemsLoader(page, DATA_TYPE.BRACELETS);
-export const loadKindles = page => itemsLoader(page, DATA_TYPE.BRACELETS);
-export const loadBeads = page => itemsLoader(page, DATA_TYPE.BRACELETS);
-export const loadOthers = page => itemsLoader(page, DATA_TYPE.BRACELETS);
+export const loadKindles = page => itemsLoader(page, DATA_TYPE.KINDLES);
+export const loadBeads = page => itemsLoader(page, DATA_TYPE.BEADS);
+export const loadOthers = page => itemsLoader(page, DATA_TYPE.OTHERS);
 
 export const loadBraceletsItem = id => itemLoader(id, DATA_TYPE.BRACELETS);
-export const loadKindlesItem = id => itemLoader(id, DATA_TYPE.BRACELETS);
-export const loadBeadsItem = id => itemLoader(id, DATA_TYPE.BRACELETS);
-export const loadOthersItem = id => itemLoader(id, DATA_TYPE.BRACELETS);
+export const loadKindlesItem = id => itemLoader(id, DATA_TYPE.KINDLES);
+export const loadBeadsItem = id => itemLoader(id, DATA_TYPE.BEADS);
+export const loadOthersItem = id => itemLoader(id, DATA_TYPE.OTHERS);
 
 function itemsLoader(page, contentType) {
   let setLoading;
   let pushItems;
   switch (contentType) {
-    case BRACELETS:
+    case DATA_TYPE.BRACELETS:
       setLoading = setBraceletsLoading;
       pushItems = pushBracelets;
       break;
-    case KINDLES:
+    case DATA_TYPE.KINDLES:
       setLoading = setKindlesLoading;
       pushItems = pushKindles;
       break;
-    case BEADS:
+    case DATA_TYPE.BEADS:
       setLoading = setBeadsLoading;
       pushItems = pushBeads;
       break;
-    case OTHERS:
+    case DATA_TYPE.OTHERS:
       setLoading = setOthersLoading;
       pushItems = pushOthers;
       break;
@@ -85,16 +85,16 @@ function itemsLoader(page, contentType) {
 function itemLoader(id, contentType) {
   let setReviewItem;
   switch (contentType) {
-    case BRACELETS:
+    case DATA_TYPE.BRACELETS:
       setReviewItem = setReviewBracelet;
       break;
-    case KINDLES:
+    case DATA_TYPE.KINDLES:
       setReviewItem = setReviewKindle;
       break;
-    case BEADS:
+    case DATA_TYPE.BEADS:
       setReviewItem = setReviewBead;
       break;
-    case OTHERS:
+    case DATA_TYPE.OTHERS:
       setReviewItem = setReviewOther;
       break; 
   }
