@@ -5,8 +5,8 @@ import Footer from '../footer/footer';
 import Container from '../container/container';
 import ImageModal from '../ImageModal/imageModal';
 
-const Layout = ({ children }) => (
-  <StyledContainer direction='column'>
+const Layout = ({ className, children }) => (
+  <StyledContainer className={className} direction='column'>
     <ImageModal />
     <Header />
       { children}
