@@ -5,7 +5,7 @@ import Container from '../container/container';
 import cartIcon from '../../assets/icons/cart.svg';
 
 const CatalogItem = ({ item, onClick }) => {
-  const { id, image, name, brief, price } = item;
+  const { id, images, name, brief, price } = item;
   const [ imageLoaded, setImageLoaded ] = useState(false);
   const [ amount, cents ] = price.toFixed(2).split('.');
 
@@ -15,7 +15,7 @@ const CatalogItem = ({ item, onClick }) => {
   return (
     <Wrapper alignItems='stretch' justifyContent='space-between' fullWidth>
       <ImageWrapper imageLoaded={imageLoaded}>
-        <img onLoad={imageLoadHandler} src={image} alt='' />
+        <img onLoad={imageLoadHandler} src={`/${images[0]}`} alt='' />
       </ImageWrapper>
       <Content alignItems='stretch' direction='column' fullWidth>
         <Name onClick={nameClickHandler} to={id}>{name}</Name>

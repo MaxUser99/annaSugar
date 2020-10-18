@@ -1,5 +1,5 @@
 import mockBracelets from '../mocks/mockBracelets.json';
-import mockBraceletImage from '../../assets/images/mock-bracelet.svg';
+// import mockBraceletImage from '../../assets/images/mock-bracelet.svg';
 
 const DATA_TYPE = {
   BRACELETS: 'BRACELETS',
@@ -75,7 +75,7 @@ function itemsLoader(page, contentType) {
 
     const items = mockBracelets.map(x => ({
       ...x,
-      image: mockBraceletImage
+      // image: mockBraceletImage
     }));
 
     return delay(1000).then(() => dispatch(pushItems(items, page)));
@@ -104,7 +104,7 @@ function itemLoader(id, contentType) {
     const transformedItem = item
     ? {
       ...item,
-      image: mockBraceletImage
+      // image: mockBraceletImage
     }
     : null;
 

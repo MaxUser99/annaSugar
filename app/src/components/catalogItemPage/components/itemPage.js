@@ -7,18 +7,19 @@ import Button from '../../button/button';
 const propGetter = (obj, propName, placeholder = '-') => (obj && obj[propName]) ? obj[propName] : placeholder;
 
 const ItemPage = ({ item, isLoading }) => {
+  console.log('item: ', item);
   const name = propGetter(item, 'name');
   const compound = propGetter(item, 'compound');
   const price = propGetter(item, 'price', null);
-  const images = propGetter(item, 'images');
+  const images = propGetter(item, 'images', []);
   const [ amount, cents ] = price
     ? price.toFixed(2).split('.')
     : ['-', ''];
   
   return (
-    <Container justifyContent='space-between' fullWidth>
+    <Container alignItems='stretch' justifyContent='space-between' fullWidth>
       <Carousel images={images} />
-      <Container direction='column' fullWidth>
+      <Content direction='column' fullWidth>
         <Name>{name}</Name>
         <Label>Состав</Label>
         <Compound>{compound}</Compound>
@@ -28,10 +29,15 @@ const ItemPage = ({ item, isLoading }) => {
           <Cents>.{cents} &#8381;</Cents>
         </Price>
         <Button>Заказать</Button>
-      </Container>
+      </Content>
     </Container>
   );
 };
+
+const Content = styled(Container)`
+  max-width: 464px;
+  padding-left: 20px;
+`;
 
 const Name = styled.h2``;
 

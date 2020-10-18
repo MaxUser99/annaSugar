@@ -2,10 +2,14 @@
   "id": "5bb4a016-12cd-476d-a67c-44d2ab25a209",
   "name": "Andalax",
   "brief": "Nullam molestie nibh in lectus. Pellentesque at nulla.",
-  "price": 76
+  "compound": "Aenean vestibulum quam dignissim sem pulvinar imperdiet. Proin vel lacus eu urna tristique efficitur.",
+  "price": 76,
+  "images": [ "mock-bracelet.svg", "mock-review.svg", "random-image.svg"]
 }, {
   "id": "5dab4d87-4a8d-4087-a2ee-1b15a64ef9d8",
   "name": "Y-Solowarm",
   "brief": "Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy.",
+  "compound": " Pellentesque vitae purus vitae diam congue pellentesque id id neque.",
+  "images": [ "mock-bracelet.svg" ],
   "price": 86
 }]
