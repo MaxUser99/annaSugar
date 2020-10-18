@@ -1,17 +1,51 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import Layout from '../../components/layout/faqLayout';
-import ExpansionPanel from '../../components/expansionPanel/expansionPanel';
-import { catalogLinks } from '../../constants/links';
+import { Router } from '@reach/router';
+import styled from 'styled-components';
+import { loadBracelets, loadReviewBracelet, setReviewBracelet } from '../../store/content/catalogActions';
+import CatalogItems from '../../components/catalogItems/catalogItems';
+import ItemPage from '../../components/catalogItems/itemPage';
 
-const Bracelets = ({ data }) => (
-  <Layout title='Каталог' tabs={catalogLinks}>
-  </Layout>
-);
+const Bracelets = ({
+  bracelets,
+  page,
+  reviewItem,
+  loadBracelets,
+  loadReviewBracelet,
+  clearHandler
+}) => {
+  useEffect(() => {
+    if (page === null) loadBracelets(0);
+  }, []);
+
+  return (
+    <StyledRouter basepath='/catalog/bracelets'>
+      <CatalogItems path='/' onItemClick={setReviewBracelet} items={bracelets} />
+      <ItemPage
+        path='/:itemId'
+        clearHandler={clearHandler}
+        reviewItem={reviewItem}
+        loadItem={loadReviewBracelet}
+      />
+    </StyledRouter>
+  );
+}
+
+const StyledRouter = styled(Router)`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
 
 export default connect(
-  ({ content: { bracelets: { data }}}) => ({
-    bracelets: data
+  ({ content: { bracelets: { reviewItem, page, data }}}) => ({
+    bracelets: data,
+    page,
+    reviewItem
   }),
-  null
+  dispatch => ({
+    loadBracelets: page => dispatch(loadBracelets(page)),
+    loadReviewBracelet: id => dispatch(loadReviewBracelet(id)),
+    clearHandler: () => dispatch(setReviewBracelet(null))
+  })
 )(Bracelets);
