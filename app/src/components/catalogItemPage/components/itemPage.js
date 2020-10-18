@@ -7,7 +7,6 @@ import Button from '../../button/button';
 const propGetter = (obj, propName, placeholder = '-') => (obj && obj[propName]) ? obj[propName] : placeholder;
 
 const ItemPage = ({ item, isLoading }) => {
-  console.log('item: ', item);
   const name = propGetter(item, 'name');
   const compound = propGetter(item, 'compound');
   const price = propGetter(item, 'price', null);
