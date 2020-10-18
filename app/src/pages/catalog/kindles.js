@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import { Router } from '@reach/router';
 import styled from 'styled-components';
 import { loadKindles, loadKindlesItem, setReviewKindle } from '../../store/content/catalogActions';
-import ItemPage from '../../components/catalogItems/itemPage';
-import CatalogItems from '../../components/catalogItems/catalogItems';
+import ItemPage from '../../components/catalogItemPage/catalogItemPage';
 
 const Kindles = ({
   kindles,

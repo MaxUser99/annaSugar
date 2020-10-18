@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from '@reach/router';
-import { catalogLinks } from '../../constants/links';
-import BaseBreadscrumb from '../breadscrumb/breadscrumb';
+import { catalogLinks } from '../../../constants/links';
+import BaseBreadscrumb from '../../breadscrumb/breadscrumb';
 
 const Breadscrumb = ({ itemName }) => {
   const { pathname } = useLocation();

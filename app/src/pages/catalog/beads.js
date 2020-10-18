@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Router } from '@reach/router';
 import { loadBeads, setReviewBead, loadBeadsItem } from '../../store/content/catalogActions';
 import CatalogItems from '../../components/catalogItems/catalogItems';
-import ItemPage from '../../components/catalogItems/itemPage';
+import ItemPage from '../../components/catalogItemPage/catalogItemPage';
 
 const Beads = ({
   beads,

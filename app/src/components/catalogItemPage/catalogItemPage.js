@@ -3,13 +3,11 @@ import { useLoading } from '../../hooks/useLoading';
 import Layout from '../layout/layout';
 import Container from '../container/container';
 import ContentWrapper from '../contentWrapper/contentWrapper';
-import Breadscrumb from './breadscrumb';
+import Breadscrumb from './components/breadscrumb';
+import ItemPage from './components/itemPage';
 
-const ItemPage = ({ itemId, reviewItem, clearHandler, loadItem }) => {
-  const { isLoading, shouldRedirect } = useLoading(
-    !reviewItem,
-    () => loadItem(itemId)
-  );
+const CatalogItemPage = ({ itemId, reviewItem, clearHandler, loadItem }) => {
+  const { isLoading, shouldRedirect } = useLoading(!reviewItem, () => loadItem(itemId));
 
   useEffect(() => clearHandler, []);
 
@@ -18,12 +16,17 @@ const ItemPage = ({ itemId, reviewItem, clearHandler, loadItem }) => {
       <Container fullWidth>
         <ContentWrapper direction='column'>
           <Breadscrumb itemName={reviewItem ? reviewItem.name : '...'} />
-          item id: { itemId }
+          {
+            shouldRedirect
+            ? <div>should redirect</div>
+            : <ItemPage item={reviewItem} isLoading={isLoading} />
+          }
         </ContentWrapper>
       </Container>
     </Layout>
   );
 }
 
-export default ItemPage;
+
+export default CatalogItemPage;
 

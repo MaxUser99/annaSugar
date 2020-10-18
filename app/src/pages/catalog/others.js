@@ -4,7 +4,7 @@ import { Router } from '@reach/router';
 import styled from 'styled-components';
 import { loadOthers, setReviewOther, loadOthersItem } from '../../store/content/catalogActions';
 import CatalogItems from '../../components/catalogItems/catalogItems';
-import ItemPage from '../../components/catalogItems/itemPage';
+import ItemPage from '../../components/catalogItemPage/catalogItemPage';
 
 const Others = ({
   others,
