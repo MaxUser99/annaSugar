@@ -36,8 +36,9 @@ const List = styled.ul`
   display: flex;
   align-items: center;
   list-style-type: none;
-  margin-right: auto;
+  // margin-right: auto
   padding: 0;
+  margin: 10px auto 0 0;
 `;
 
 const Item = styled.li`

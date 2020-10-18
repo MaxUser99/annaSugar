@@ -17,7 +17,7 @@ const ItemPage = ({ item, isLoading }) => {
     : ['-', ''];
   
   return (
-    <Container alignItems='stretch' justifyContent='space-between' fullWidth>
+    <RootContainer alignItems='stretch' justifyContent='space-between' fullWidth>
       <Carousel images={images} />
       <Content direction='column' fullWidth>
         <Name $loading={isLoading}>{name}</Name>
@@ -30,9 +30,13 @@ const ItemPage = ({ item, isLoading }) => {
         </Price>
         <Button>Заказать</Button>
       </Content>
-    </Container>
+    </RootContainer>
   );
 };
+
+const RootContainer = styled(Container)`
+  padding-top: 36px;
+`;
 
 const Content = styled(Container)`
   max-width: 464px;

@@ -6,15 +6,15 @@ import Link from './components/link';
 import LangButton from './components/langButton';
 
 const Header = () => (
-  <Container id='header' fullWidth>
-    <ContentWrapper justifyContent='space-between' maxWidth='wide'>
+  <RootContainer id='header' alignItems='center' fullWidth>
+    <ContentWrapper justifyContent='space-between' alignItems='center' maxWidth='wide'>
       <FixedWidthContainer>
         <SiteTitle>Anna Suggar</SiteTitle>
       </FixedWidthContainer>
       <Container justifyContent='center'>
         <Link to='/'>Главная</Link>
         <Link to='/catalog'>Каталог</Link>
-        <Link to='/consult'>Консультации</Link>
+        <Link to='/consult'>Консультации</Link> 
         <Link to='/faq'>Вопросы</Link>
         <Link to='/contact'>Контакты</Link>
       </Container>
@@ -23,8 +23,12 @@ const Header = () => (
         <LangButton lang='en' />
       </FixedWidthContainer>
     </ContentWrapper>
-  </Container>
+  </RootContainer>
 );
+
+const RootContainer = styled(Container)`
+  height: 100px;
+`;
 
 const FixedWidthContainer = styled(Container)`
   width: 11.25rem;
