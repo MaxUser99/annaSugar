@@ -20,7 +20,7 @@ const ItemPage = ({ item, isLoading }) => {
     <Container alignItems='stretch' justifyContent='space-between' fullWidth>
       <Carousel images={images} />
       <Content direction='column' fullWidth>
-        <Name>{name}</Name>
+        <Name $loading={isLoading}>{name}</Name>
         <Label>Состав</Label>
         <Compound>{compound}</Compound>
         <Label>Цена</Label>
@@ -36,14 +36,36 @@ const ItemPage = ({ item, isLoading }) => {
 
 const Content = styled(Container)`
   max-width: 464px;
+  max-height: 390px;
   padding-left: 20px;
+  & > button {
+    margin-top: auto;
+  }
 `;
 
-const Name = styled.h2``;
+const Name = styled.h2`
+  font-family: ${({ $loading }) => !$loading && "Cormorant Infant"};
+  // font-family: ;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 48px;
+  margin: 0 0 32px;
+  color: ${({ theme }) => theme.text.lighter2};
+`;
 
-const Label = styled.p``;
+const Label = styled.p`
+  font-size: 14px;
+  line-height: 14px;
+  margin: 0 0 5px;
+  color: ${({ theme }) => theme.text.mutted};
+`;
 
-const Compound = styled.em``;
+const Compound = styled.p`
+  font-size: 18px;
+  line-height: 32px;
+  margin: 0 0 20px;
+  color: ${({ theme }) => theme.text.lighter2};
+`;
 
 const Price = styled.p``;
 
