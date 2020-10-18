@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Router } from '@reach/router';
-import { loadBeads, setReviewBead, loadReviewBead } from '../../store/content/catalogActions';
+import { loadBeads, setReviewBead, loadBeadsItem } from '../../store/content/catalogActions';
 import CatalogItems from '../../components/catalogItems/catalogItems';
 import ItemPage from '../../components/catalogItems/itemPage';
 
@@ -45,7 +45,7 @@ export default connect(
   }),
   dispatch => ({
     loadBeads: page => dispatch(loadBeads(page)),
-    loadReviewBead: id => dispatch(loadReviewBead(id)),
+    loadReviewBead: id => dispatch(loadBeadsItem(id)),
     clearHandler: () => dispatch(setReviewBead(null))
   })
 )(Beads);

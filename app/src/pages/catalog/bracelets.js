@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Router } from '@reach/router';
 import styled from 'styled-components';
-import { loadBracelets, loadReviewBracelet, setReviewBracelet } from '../../store/content/catalogActions';
+import { loadBracelets, loadBraceletsItem, setReviewBracelet } from '../../store/content/catalogActions';
 import CatalogItems from '../../components/catalogItems/catalogItems';
 import ItemPage from '../../components/catalogItems/itemPage';
 
@@ -45,7 +45,7 @@ export default connect(
   }),
   dispatch => ({
     loadBracelets: page => dispatch(loadBracelets(page)),
-    loadReviewBracelet: id => dispatch(loadReviewBracelet(id)),
+    loadReviewBracelet: id => dispatch(loadBraceletsItem(id)),
     clearHandler: () => dispatch(setReviewBracelet(null))
   })
 )(Bracelets);
