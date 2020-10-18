@@ -12,13 +12,6 @@ const ItemPage = ({ itemId, reviewItem, clearHandler, loadItem }) => {
 
   useEffect(() => clearHandler, []);
 
-  console.log({
-    isLoading,
-    shouldRedirect,
-    itemId,
-    reviewItem
-  });
-
   return (
     <Layout>
       <Container>

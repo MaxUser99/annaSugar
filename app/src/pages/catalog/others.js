@@ -11,13 +11,12 @@ const Others = ({
   page,
   loadOthers,
   reviewItem,
-  loadReviewItem
+  loadReviewItem,
+  clearHandler
 }) => {
   useEffect(() => {
     if (page === null) loadOthers(0);
   }, []);
-
-  const clearHandler = () => setReviewOther(null);
 
   return (
     <StyledRouter basepath='/catalog/others'>
@@ -46,6 +45,7 @@ export default connect(
   }),
   dispatch => ({
     loadOthers: page => dispatch(loadOthers(page)),
-    loadReviewItem: id => dispatch(loadOthersItem(id))
+    loadReviewItem: id => dispatch(loadOthersItem(id)),
+    clearHandler: () => dispatch(setReviewOther(null))
   })
 )(Others);
