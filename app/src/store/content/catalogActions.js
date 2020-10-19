@@ -51,6 +51,7 @@ export const loadOthersItem = id => itemLoader(id, DATA_TYPE.OTHERS);
 function itemsLoader(page, contentType) {
   let setLoading;
   let pushItems;
+
   switch (contentType) {
     case DATA_TYPE.BRACELETS:
       setLoading = setBraceletsLoading;
@@ -73,12 +74,7 @@ function itemsLoader(page, contentType) {
   return async function (dispatch) {
     dispatch(setLoading());
 
-    const items = mockBracelets.map(x => ({
-      ...x,
-      // image: mockBraceletImage
-    }));
-
-    return delay(1000).then(() => dispatch(pushItems(items, page)));
+    return delay(1000).then(() => dispatch(pushItems(mockBracelets, page)));
   }
 }
 
@@ -100,15 +96,9 @@ function itemLoader(id, contentType) {
   }
 
   return async function (dispatch) {
-    const item = mockBracelets.find(x => x.id === id);
-    const transformedItem = item
-    ? {
-      ...item,
-      // image: mockBraceletImage
-    }
-    : null;
+    const item = mockBracelets.find(x => x.id === id) || null;
 
-    await delay(1000).then(() => dispatch(setReviewItem(transformedItem)));
+    await delay(1000).then(() => dispatch(setReviewItem(item)));
     return transformedItem;
   }
 }

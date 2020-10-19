@@ -15,6 +15,17 @@ import {
   SET_REVIEW_BEAD,
   SET_REVIEW_OTHER,
 } from './catalogActions';
+import {
+  SET_ASTRO_LOADING,
+  SET_TARO_LOADING,
+  SET_RUNE_LOADING,
+  SET_RITUAL_LOADING,
+  PUSH_ASTRO,
+  PUSH_TARO,
+  PUSH_RUNE,
+  PUSH_RITUAL,
+} from './consultActions';
+
 
 const LOADABLE_CONTENT = {
   data: [],
@@ -31,7 +42,12 @@ const initialState = {
   bracelets: {...LOADABLE_CONTENT},
   beads: {...LOADABLE_CONTENT},
   others: {...LOADABLE_CONTENT},
-  kindles: {...LOADABLE_CONTENT}
+  kindles: {...LOADABLE_CONTENT},
+  // consult data
+  astro: {...LOADABLE_CONTENT},
+  rune: {...LOADABLE_CONTENT},
+  ritual: {...LOADABLE_CONTENT},
+  taro: {...LOADABLE_CONTENT},
 };
 
 export default (state = initialState, action) => {
@@ -190,6 +206,76 @@ export default (state = initialState, action) => {
       others: {
         ...state.others,
         reviewItem: action.payload
+      }
+    };
+
+    // consult actions
+    // astro actions
+    case SET_ASTRO_LOADING: return {
+      ...state,
+      astro: {
+        ...state.astro,
+        error: null,
+        status: RESOURCE_STATUS.LOADING
+      }
+    };
+    case PUSH_ASTRO: return {
+      ...state,
+      astro: {
+        ...state.astro,
+        status: RESOURCE_STATUS.LOADED,
+        data: [...state.astro.data, ...action.payload]
+      }
+    };
+    // taro actions
+    case SET_TARO_LOADING: return {
+      ...state,
+      taro: {
+        ...state.taro,
+        error: null,
+        status: RESOURCE_STATUS.LOADING
+      }
+    };
+    case PUSH_TARO: return {
+      ...state,
+      taro: {
+        ...state.taro,
+        status: RESOURCE_STATUS.LOADED,
+        data: [...state.taro.data, ...action.payload]
+      }
+    };
+    // rune actions
+    case SET_RUNE_LOADING: return {
+      ...state,
+      rune: {
+        ...state.rune,
+        error: null,
+        status: RESOURCE_STATUS.LOADING
+      }
+    };;
+    case PUSH_RUNE: return {
+      ...state,
+      rune: {
+        ...state.rune,
+        status: RESOURCE_STATUS.LOADED,
+        data: [...state.rune.data, ...action.payload]
+      }
+    };
+    // ritual actions
+    case SET_RITUAL_LOADING: return {
+      ...state,
+      ritual: {
+        ...state.ritual,
+        error: null,
+        status: RESOURCE_STATUS.LOADING
+      }
+    };;
+    case PUSH_RITUAL: return {
+      ...state,
+      ritual: {
+        ...state.ritual,
+        status: RESOURCE_STATUS.LOADED,
+        data: [...state.ritual.data, ...action.payload]
       }
     };
 

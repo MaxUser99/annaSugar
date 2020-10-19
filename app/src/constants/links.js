@@ -11,3 +11,10 @@ export const catalogLinks = [
   { title: 'Четки', href: 'beads' },
   { title: 'Другое', href: 'others' },
 ];
+
+export const consultLinks = [
+  { title: 'Астро', href: 'astro' },
+  { title: 'Таро', href: 'taro' },
+  { title: 'Руны', href: 'rune' },
+  { title: 'Ритуалы', href: 'ritual' },
+];
