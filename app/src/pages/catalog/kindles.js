@@ -4,6 +4,7 @@ import { Router } from '@reach/router';
 import styled from 'styled-components';
 import { loadKindles, loadKindlesItem, setReviewKindle } from '../../store/content/catalogActions';
 import ItemPage from '../../components/catalogItemPage/catalogItemPage';
+import CatalogItems from '../../components/catalogItems/catalogItems';
 
 const Kindles = ({
   kindles,

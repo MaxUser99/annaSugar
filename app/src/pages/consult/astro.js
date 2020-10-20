@@ -1,21 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 import { consultLinks } from '../../constants/links';
-import Layout from '../../components/layout/layout';
-import ContentWrapper from '../../components/contentWrapper/contentWrapper';
-import Container from '../../components/container/container';
+import Layout from '../../components/layout/faqLayout';
+import ConsultItem from '../../components/consultItem/consultItem';
 
-const Astro = () => (
+const Astro = ({ items }) => (
   <Layout title='Консультации' tabs={consultLinks}>
-    <MainBlock>
-      {/* <ImageWrapper>
-        <img src={} alt='' />
-      </ImageWrapper> */}
-
-    </MainBlock>
+    {
+      items.map(item => <ConsultItem key={item.title} item={item} />)
+    }
   </Layout>
 );
 
-const MainBlock = styled(Container)``;
-
-export default Astro;
+export default connect(
+  ({ content: { astro: { data }}}) => ({
+    items: data
+  }),
+  null
+)(Astro);

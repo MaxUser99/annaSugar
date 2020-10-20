@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 import contentReducer from './content/reducer';
 import userReducer from './user/reducer';
 import uiReducer from './ui/reducer';
+import onStoreCreate from './onStoreCreate';
 
 const rootReducer = combineReducers({
   content: contentReducer,
@@ -14,6 +15,8 @@ const rootReducer = combineReducers({
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
+
+store.dispatch(onStoreCreate());
 
 export default ({ children }) => (
   <Provider store={store}>{children}</Provider>

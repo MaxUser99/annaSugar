@@ -1,3 +1,5 @@
+import RESOURCE_STATUS from '../../constants/resourceStatus';
+
 import mockArticles from '../mocks/mockArticles.json';
 import randomImage from '../../assets/images/random-image.svg';
 
@@ -10,7 +12,11 @@ export const pushArticles = (articles, page) => ({ type: PUSH_ARTICLES, payload:
 export const setReviewArticle = article => ({ type: SET_REVIEW_ARTICLE, payload: article });
 
 export const loadArticles = page => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
+    const { content: { articles: { status }}} = getState();
+
+    if (status === RESOURCE_STATUS.LOADING) return;
+
     dispatch(setArticlesLoading());
     const transformedArticles = mockArticles.map(({ date, ...rest}) => ({
       ...rest,

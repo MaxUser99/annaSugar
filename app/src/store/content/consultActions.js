@@ -58,7 +58,7 @@ function loader(contentType) {
   return async function (dispatch) {
     dispatch(setLoading());
 
-    return delay(1000).then(() => dispatch(pushItems(mockConsultData)));
+    return delay(400).then(() => dispatch(pushItems(mockConsultData)));
   }
 }
 
