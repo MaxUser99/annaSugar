@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import Container from '../container/container';
 
-const ExpansionPanel = ({ title, text }) => {
+const ExpansionPanel = ({ className, title, text }) => {
   const [ open, setOpen ] = useState(false);
   const [ contentHeight, setContentHeight ] = useState(0);
   const [ headerHeight, setHeaderHeight ] = useState(0);
@@ -14,7 +14,6 @@ const ExpansionPanel = ({ title, text }) => {
   useEffect(() => {
     if (contentRef.current) {
       const { height } = contentRef.current.getBoundingClientRect();
-      console.log('conntent height: ', height);
       setContentHeight(height);
     }
   }, [ headerHeight, contentRef ])
@@ -28,12 +27,12 @@ const ExpansionPanel = ({ title, text }) => {
 
   return (
     <Wrapper
+      direction='column'
       onClick={toggleOpen}
+      className={className}
       $maxHeight={open ? headerHeight + contentHeight : headerHeight}
       $withTransition={!!contentHeight}
-      $open={open}
-      direction='column'
-      fullWidth>
+      $open={open}>
       <Header ref={headerRef} alignItems='center' fullWidth>
         <p>{title}</p>
         <Indicator $open={open}>{open ? '-' : '+'}</Indicator>
@@ -87,6 +86,7 @@ const Header = styled(Container)`
 
 const Indicator = styled.span`
   margin-left: auto;
+  user-select: none;
   font-family: ${({ $open }) => ($open ? 'Montserrat Alternates' : 'Cormorant Infant')};
 `;
 

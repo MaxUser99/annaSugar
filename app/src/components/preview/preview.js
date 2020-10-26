@@ -41,8 +41,6 @@ const Preview = ({
     onClick,
   } = linkProps;
 
-  console.log('link props: ', linkProps);
-
   return (
     <StyledContainer direction='column' fullWidth>
       <Date>{dateString}</Date>

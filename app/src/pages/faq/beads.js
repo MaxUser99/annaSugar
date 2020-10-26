@@ -1,26 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Layout from '../../components/layout/faqLayout';
 import ExpansionPanel from '../../components/expansionPanel/expansionPanel';
 import { faqLinks } from '../../constants/links';
+import loadFAQs from '../../HOCs/loadFAQs';
 
-const data = [
-  {
-    title: 'Как забронировать консультацию?',
-    text: `
-      Для нашей встречи мы выбираем удобное время и дату. Подтверждение бронирования консультации происходит после предоплаты. Оплатить консультацию можно в течение 24 часов после оговоренной брони.
-      По истечении 24 часов с момента бронирования и в случае неоплаты, выбранная дата для консультации аннулируется.
-      В случае форс-мажора консультацию можно перенести, но не позднее чем за 2 суток до встречи.`
-  },
-  {
-    title: 'qwteuir wtohklfg?',
-    text: `
-      Для нашей встречи мы выбираем удобное время и дату. Подтверждение бронирования консультации происходит после предоплаты. Оплатить консультацию можно в течение 24 часов после оговоренной брони.
-      По истечении 24 часов с момента бронирования и в случае неоплаты, выбранная дата для консультации аннулируется.
-      В случае форс-мажора консультацию можно перенести, но не позднее чем за 2 суток до встречи.`
-  }
-];
-
-const Beads = () => (
+const Beads = ({ data }) => (
   <Layout title='Вопросы' tabs={faqLinks}>
     {
       data.map(({ title, text }, i) => (
@@ -30,4 +15,11 @@ const Beads = () => (
   </Layout>
 );
 
-export default Beads;
+export default loadFAQs(
+  connect(
+    ({ content: { faq: { beads }}}) => ({
+      data: beads
+    }),
+    null
+  )(Beads)
+);

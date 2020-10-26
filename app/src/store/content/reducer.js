@@ -1,4 +1,6 @@
 import RESOURCE_STATUS from '../../constants/resourceStatus';
+import FAQs_TYPES from '../../constants/FAQs';
+import { SET_FAQs, SET_FAQs_LOADING } from './faqActions';
 import { PUSH_ARTICLES, SET_ARTICLES_LOADING, SET_REVIEW_ARTICLE } from './articleActions';
 import { PUSH_REVIEWS, SET_REVIEWS_LOADING, SET_REVIEW_ITEM } from './reviewActions';
 import {
@@ -26,11 +28,14 @@ import {
   PUSH_RITUAL,
 } from './consultActions';
 
+const SIMPLE_LOADABLE_CONTENT = {
+  data: [],
+  status: RESOURCE_STATUS.INITIAL
+}
 
 const LOADABLE_CONTENT = {
-  data: [],
+  ...SIMPLE_LOADABLE_CONTENT,
   reviewItem: null,
-  status: RESOURCE_STATUS.INITIAL,
   error: null,
   page: null
 };
@@ -48,6 +53,15 @@ const initialState = {
   rune: {...LOADABLE_CONTENT},
   ritual: {...LOADABLE_CONTENT},
   taro: {...LOADABLE_CONTENT},
+  // faq
+  // faq: {...SIMPLE_LOADABLE_CONTENT}
+  faq: {
+    astro: [],
+    bracelets: [],
+    beads: [],
+    bars: [],
+    status: RESOURCE_STATUS.INITIAL
+  }
 };
 
 export default (state = initialState, action) => {
@@ -279,6 +293,24 @@ export default (state = initialState, action) => {
       }
     };
 
+    //FAQs actions
+    case SET_FAQs_LOADING: return {
+      ...state,
+      faq: {
+        ...state.faq,
+        status: RESOURCE_STATUS.LOADING
+      }
+    };
+    case SET_FAQs: return {
+      ...state,
+      faq: {
+        status: RESOURCE_STATUS.LOADED,
+        astro: action.payload.filter(x => x.category === FAQs_TYPES.ASTRO),
+        bracelets: action.payload.filter(x => x.category === FAQs_TYPES.BRACELETS),
+        beads: action.payload.filter(x => x.category === FAQs_TYPES.BEADS),
+        bars: action.payload.filter(x => x.category === FAQs_TYPES.BARS),
+      }
+    }
     default: return state;
   }
 };

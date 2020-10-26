@@ -14,7 +14,6 @@ const icons = {
 
 const LangButton = ({ lang, active }) => {
   const icon = icons[lang][active ? 'active' : 'mutted'];
-  console.log({ lang, active });
   return (
     <StyledButton>
       <Img src={icon} alt='' />

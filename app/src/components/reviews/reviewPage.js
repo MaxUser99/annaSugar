@@ -48,10 +48,6 @@ const ReviewPage = ({
 
   const redirectClickHandler = () => navigate('/reviews');
 
-  console.log('review: ', review);
-  console.log('isLoading: ', isLoading);
-  console.log('shouldRedirect: ', shouldRedirect);
-
   return (
     <>
       <Breadscrumb breadscrumbs={breadscrumbs} />

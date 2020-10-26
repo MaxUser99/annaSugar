@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useLayoutEffect } from 'react';
 
 export function useFooterHeight() {
   const [ height, setHeight ] = useState();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     function calcHeight() {
       const footer = document.getElementById('footer');
       if (!footer) return;
