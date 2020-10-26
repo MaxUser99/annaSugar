@@ -4,6 +4,7 @@ import ContentWrapper from '../contentWrapper/contentWrapper';
 import Container from '../container/container';
 import Link from './components/link';
 import LangButton from './components/langButton';
+import LANGS from '../../constants/langs';
 
 const Header = () => (
   <RootContainer id='header' alignItems='center' fullWidth>
@@ -19,8 +20,8 @@ const Header = () => (
         <Link to='/contact'>Контакты</Link>
       </Container>
       <FixedWidthContainer justifyContent='flex-end'>
-        <LangButton active lang='ru' />
-        <LangButton lang='en' />
+        <LangButton active lang={LANGS.RU} />
+        <LangButton lang={LANGS.EN} />
       </FixedWidthContainer>
     </ContentWrapper>
   </RootContainer>

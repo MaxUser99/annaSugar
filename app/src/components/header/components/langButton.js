@@ -5,15 +5,16 @@ import ruIcon from '../../../assets/lang/ru-active.svg';
 import ruIconMutted from '../../../assets/lang/ru-mutted.svg';
 import enIcon from '../../../assets/lang/en-active.svg';
 import enIconMutted from '../../../assets/lang/en-mutted.svg';
+import LANGS from '../../../constants/langs';
 
 const icons = {
-  ru: { active: ruIcon, mutted: ruIconMutted },
-  en: { active: enIcon, mutted: enIconMutted },
+  [LANGS.RU]: { active: ruIcon, mutted: ruIconMutted },
+  [LANGS.EN]: { active: enIcon, mutted: enIconMutted },
 };
 
 const LangButton = ({ lang, active }) => {
   const icon = icons[lang][active ? 'active' : 'mutted'];
-
+  console.log({ lang, active });
   return (
     <StyledButton>
       <Img src={icon} alt='' />
@@ -37,7 +38,7 @@ const Img = styled.img`
 `;
 
 LangButton.propTypes = {
-  lang: PropTypes.oneOf([ 'ru', 'en' ]).isRequired,
+  lang: PropTypes.oneOf([ 'RU', 'EN' ]).isRequired,
   active: PropTypes.bool
 };
 

@@ -8,12 +8,8 @@ const userRouterPages = [
   'catalog/others',
 ];
 
-// const redirects = [
-//   { fromPath: '/catalog', toPath: '/catalog/bracelets'}
-// ];
-
 exports.onCreatePage = async ({ page, actions }) => {
-  const { createPage, createRedirect } = actions
+  const { createPage } = actions
 
   userRouterPages.forEach(path => {
     if (page.path.match(`^\/${path}/`)) {
@@ -21,13 +17,4 @@ exports.onCreatePage = async ({ page, actions }) => {
       createPage(page);
     }
   });
-
-  // redirects.forEach(({ fromPath, toPath }) => {
-  //   createRedirect({
-  //     fromPath,
-  //     toPath,
-  //     redirectInBrowser: true,
-  //     // isPermanent: true
-  //   });
-  // })
 };
