@@ -99,7 +99,7 @@ function itemLoader(id, contentType) {
     const item = mockBracelets.find(x => x.id === id) || null;
 
     await delay(1000).then(() => dispatch(setReviewItem(item)));
-    return transformedItem;
+    return item;
   }
 }
 

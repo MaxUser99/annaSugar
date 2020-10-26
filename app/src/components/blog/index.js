@@ -2,8 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import Breadscrumb from '../breadscrumb/breadscrumb';
-import PreviewArticle from '../previewArticle/previewArticle';
+import Preview from '../preview/preview';
 import Button from '../button/button';
+import { setReviewArticle } from '../../store/content/articleActions';
 
 const breadscrumbs = [
   {
@@ -17,13 +18,25 @@ const breadscrumbs = [
   }
 ];
 
-const BlogIndex = ({ articles }) => (
+const BlogIndex = ({ articles, setReviewArticle }) => (
   <>
     <Breadscrumb breadscrumbs={breadscrumbs} />
     <Title>Статьи</Title>
     {
       articles.map(article => (
-        <PreviewArticle key={article.id} article={article} />
+        <Preview
+          key={article.id}
+          image={article.image}
+          name={article.title}
+          description={article.text}
+          date={article.date}
+          linkProps={{
+            show: true,
+            text: 'Read \u003E',
+            to: `/blog/${article.id}`,
+            onClick: () => setReviewArticle(article)
+          }}
+        />
       ))
     }
     <StyledButton>больше</StyledButton>
@@ -47,5 +60,7 @@ export default connect(
   ({ content: { articles: { data }}}) => ({
     articles: data
   }),
-  null
+  dispatch => ({
+    setReviewArticle: article => dispatch(setReviewArticle(article))
+  })
 )(BlogIndex);
