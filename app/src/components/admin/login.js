@@ -44,6 +44,9 @@ const Login = () => {
 const StyledInput = styled(Input)`
   box-sizing: border-box;
   padding: 0 60px;
+  &:last-of-type {
+    margin-bottom: 64px;
+  }
 `;
 
 const StyledContainer = styled(Container)`
