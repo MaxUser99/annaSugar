@@ -1,10 +1,10 @@
 import React from 'react';
 import Layout from './components/layout';
 
-const AdminHome = () => (
+const FaqBars = () => (
   <Layout>
-    <div>admin home</div>
+    faq bars
   </Layout>
 );
 
-export default AdminHome;
+export default FaqBars;

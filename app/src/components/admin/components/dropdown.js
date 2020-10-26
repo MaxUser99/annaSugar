@@ -17,7 +17,7 @@ const Dropdown = ({ value }) => {
   const changeHandler = selectedValues => {
     const [ targetValue ] = selectedValues;
     const { href } = targetValue;
-    navigate(`admin/${value.href}/${href}`);
+    navigate(`/admin/${value.href}/${href}`);
   } 
 
   const rootClickHandler = () => {

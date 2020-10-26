@@ -26,7 +26,7 @@ const Layout = ({ children }) => (
             adminLinks.map(x => (
               x.subLinks
               ? <Dropdown key={x.href} value={x} />
-              : <Link to={x.href} key={x.href}>{x.title}</Link>
+              : <Link to={`/admin/${x.href}`} key={x.href}>{x.title}</Link>
             ))
           }
         </Nav>
