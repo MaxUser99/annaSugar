@@ -18,3 +18,11 @@ export const consultLinks = [
   { title: 'Руны', href: 'rune' },
   { title: 'Ритуалы', href: 'ritual' },
 ];
+
+export const adminLinks = [
+  { title: 'Статьи', href: 'articles' },
+  { title: 'Отзывы', href: 'reviews' },
+  { title: 'Каталог', href: 'catalog', subLinks: catalogLinks },
+  { title: 'Консультации', href: 'consult', subLinks: consultLinks },
+  { title: 'FAQ', href: 'faq', subLinks: faqLinks },
+];

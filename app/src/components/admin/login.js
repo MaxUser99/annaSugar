@@ -1,17 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { Redirect } from '@reach/router';
 import { useForm } from 'react-hook-form';
 import Container from '../container/container';
 import ContentWrapper from '../contentWrapper/contentWrapper';
 import Input from '../input/input';
 import Button from '../button/button';
 
-const Login = () => {
+const Login = ({ isLoggedIn }) => {
   const { register, handleSubmit, watch, errors } = useForm();
 
   const onSubmit = data => console.log(data);
 
-  console.log('errors: ', errors);
+  if (isLoggedIn) return <Redirect to='/admin' noThrow/>;
 
   return (
     <StyledContainer fullWidth>
@@ -51,9 +53,8 @@ const StyledInput = styled(Input)`
 
 const StyledContainer = styled(Container)`
   min-height: 100vh;
-  position: relative;
-  // align-items: center;
   width: 500px;
+  margin: auto;
 `;
 
 const Form = styled.form`
@@ -61,8 +62,7 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  position: absolute;
-  top: 20%;
+  margin: 100px 0;
   align-items: center;
 `;
 
@@ -75,4 +75,6 @@ const Title = styled.h2`
   margin: 0 0 64px;
 `;
 
-export default Login;
+export default connect(({ userData: { user } }) => ({
+  isLoggedIn: !!user
+}))(Login);

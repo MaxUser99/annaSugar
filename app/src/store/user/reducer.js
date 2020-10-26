@@ -1,7 +1,8 @@
 import { LOG_IN } from './actions';
 
 const initialState = {
-  user: null
+  user: {}
+  // user: null
 };
 
 export default (state = initialState, action) => {

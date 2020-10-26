@@ -1283,7 +1283,7 @@
     "@emotion/utils" "0.11.3"
     "@emotion/weak-memoize" "0.2.5"
 
-"@emotion/core@^10.0.14", "@emotion/core@^10.0.20":
+"@emotion/core@^10.0.14", "@emotion/core@^10.0.20", "@emotion/core@^10.0.27":
   version "10.0.35"
   resolved "https://registry.yarnpkg.com/@emotion/core/-/core-10.0.35.tgz#513fcf2e22cd4dfe9d3894ed138c9d7a859af9b3"
   integrity sha512-sH++vJCdk025fBlRZSAhkRlSUoqSqgCzYf5fMOmqqi3bM6how+sQpg3hkgJonj8GxXM4WbD7dRO+4tegDB9fUw==
@@ -1347,7 +1347,7 @@
     "@emotion/serialize" "^0.11.15"
     "@emotion/utils" "0.11.3"
 
-"@emotion/styled@^10.0.14", "@emotion/styled@^10.0.17":
+"@emotion/styled@^10.0.14", "@emotion/styled@^10.0.17", "@emotion/styled@^10.0.27":
   version "10.0.27"
   resolved "https://registry.yarnpkg.com/@emotion/styled/-/styled-10.0.27.tgz#12cb67e91f7ad7431e1875b1d83a94b814133eaf"
   integrity sha512-iK/8Sh7+NLJzyp9a5+vIQIXTYxfT4yB/OJbjzQanB2RZpvmzBQOHZWhpAMZWYEKRNNbsD6WfBw5sVWkb6WzS/Q==
@@ -5274,7 +5274,7 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-classnames@^2.2.5:
+classnames@^2.2.3, classnames@^2.2.5:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
   integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
@@ -14073,6 +14073,21 @@ react-draggable@^4.0.3:
   dependencies:
     classnames "^2.2.5"
     prop-types "^15.6.0"
+
+react-dropdown-select@^4.6.0:
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/react-dropdown-select/-/react-dropdown-select-4.6.0.tgz#d10e06991a7d1294b2a9aacb8502a450d8c01cbe"
+  integrity sha512-X8fvdVxSFZqksf2yI0V/jqgUhs1xJcsNst338t+sWr9Kc4T244jw1noPgxJdTGFhKmJrbmXeUL4UFnc/Ipe36Q==
+  dependencies:
+    "@emotion/core" "^10.0.27"
+    "@emotion/styled" "^10.0.27"
+
+react-dropdown@^1.9.0:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/react-dropdown/-/react-dropdown-1.9.0.tgz#405d0c580ec4ba276091e059ee9c278f75caeb96"
+  integrity sha512-BDApCUhs0qHqnFW3b54SuqI200FOOsmiy0dejdmtdTn/MMY11jcou3CLX1oT2Qa1PdN7viTyAGT8YCpK5qb9xg==
+  dependencies:
+    classnames "^2.2.3"
 
 react-element-to-jsx-string@^14.3.1:
   version "14.3.1"

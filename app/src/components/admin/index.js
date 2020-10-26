@@ -1,7 +1,10 @@
 import React from 'react';
+import Layout from './components/layout';
 
 const AdminHome = () => (
-  <div>AdminHome</div>
+  <Layout>
+    <div>admin home</div>
+  </Layout>
 );
 
 export default AdminHome;

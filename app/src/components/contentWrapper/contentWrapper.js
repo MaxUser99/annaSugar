@@ -18,7 +18,6 @@ const PADDINGS = {
 const ContentWrapper = (props) => (
   <Wrapper {...props} fullWidth/>
 );
-  // max-width: ${({ maxWidth = 'default' }) => WIDTHS[maxWidth]};
 
 const Wrapper = styled(Container)`
   max-width: 1440px;
