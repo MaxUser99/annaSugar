@@ -6,20 +6,24 @@ import loadFAQs from '../../../HOCs/loadFAQs';
 import Container from '../../container/container';
 import ExpansionPanel from '../../expansionPanel/expansionPanel';
 import Layout from '../components/layout';
+import { editFAQ } from '../../../store/content/faqActions';
 
-const FaqBars = ({ data }) => (
+const FaqBars = ({ data, editFAQ }) => (
   <Layout>
     {
-      data.map(x => (
-        <Container key={x.id} direction='column' fullWidth>
-          <Container>
-            <Date>{x.date.toLocaleDateString()}</Date>
-            <Separator>|</Separator>
-            <EditLink to='#'>Edit</EditLink>
+      data.map(x => {
+        const linkClickHandler = () => editFAQ(x);
+        return (
+          <Container key={x.id} direction='column' fullWidth>
+            <Container>
+              <Date>{x.date.toLocaleDateString()}</Date>
+              <Separator>|</Separator>
+              <EditLink onClick={linkClickHandler} to={`${x.id}`}>Edit</EditLink>
+            </Container>
+            <StyledPanel key={x.id} title={x.title} text={x.text} />
           </Container>
-          <StyledPanel key={x.id} title={x.title} text={x.text} />
-        </Container>
-      ))
+        );
+      })
     }
   </Layout>
 );
@@ -47,7 +51,9 @@ const mapStateToProps = ({ content: { faq: { bars }}}) => ({
   data: bars
 });
 
-const mapDispatchToProps = null;
+const mapDispatchToProps = dispatch => ({
+  editFAQ: item => dispatch(editFAQ(item))
+});
 
 export default loadFAQs(
   connect(

@@ -4,9 +4,11 @@ import RESOURCE_STATUS from '../../constants/resourceStatus';
 
 export const SET_FAQs = 'SET_FAQs';
 export const SET_FAQs_LOADING = 'SET_FAQs_LOADING';
+export const SET_ON_EDIT_FAQ = 'SET_ON_EDIT_FAQ';
 
 export const setFaqs = faqs => ({ type: SET_FAQs, payload: faqs });
 export const setFaqsLoading = () => ({ type: SET_FAQs_LOADING });
+export const editFAQ = item => ({ type: SET_ON_EDIT_FAQ, payload: item });
 
 export const loadFaqs = () => {
   return async (dispatch, getState) => {

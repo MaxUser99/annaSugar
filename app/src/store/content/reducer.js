@@ -1,6 +1,6 @@
 import RESOURCE_STATUS from '../../constants/resourceStatus';
 import FAQs_TYPES from '../../constants/FAQs';
-import { SET_FAQs, SET_FAQs_LOADING } from './faqActions';
+import { SET_FAQs, SET_FAQs_LOADING, SET_ON_EDIT_FAQ } from './faqActions';
 import { PUSH_ARTICLES, SET_ARTICLES_LOADING, SET_REVIEW_ARTICLE } from './articleActions';
 import { PUSH_REVIEWS, SET_REVIEWS_LOADING, SET_REVIEW_ITEM } from './reviewActions';
 import {
@@ -60,6 +60,7 @@ const initialState = {
     bracelets: [],
     beads: [],
     bars: [],
+    onEdit: null,
     status: RESOURCE_STATUS.INITIAL
   }
 };
@@ -311,6 +312,14 @@ export default (state = initialState, action) => {
         bars: action.payload.filter(x => x.category === FAQs_TYPES.BARS),
       }
     }
+    case SET_ON_EDIT_FAQ: return {
+      ...state,
+      faq: { 
+        ...state.faq,
+        onEdit: action.payload
+      }
+    };
+
     default: return state;
   }
 };

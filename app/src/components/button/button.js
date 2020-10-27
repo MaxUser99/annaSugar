@@ -8,8 +8,10 @@ const Button = ({ onClick, ...props }) => {
 
     e.target.appendChild(ripple); 
 
-    const x = e.clientX - e.target.offsetLeft;
-    const y = e.clientY - e.target.offsetTop; 
+    const x = e.clientX - e.currentTarget.offsetLeft;
+    const y = e.clientY - e.currentTarget.offsetTop; 
+
+    console.log({ x, y})
 
     ripple.style.left = `${x}px`; 
     ripple.style.top = `${y}px`; 

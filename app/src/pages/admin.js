@@ -17,6 +17,7 @@ import FaqAstro from '../components/admin/subpages/faqAstro';
 import FaqBars from '../components/admin/subpages/faqBars';
 import FaqBeads from '../components/admin/subpages/faqBeads';
 import FaqBracelets from '../components/admin/subpages/faqBracelets';
+import FaqForm from '../components/admin/forms/faqForm';
 
 const Admin = () => (
   <StyledRouter basepath='/admin'>
@@ -31,6 +32,7 @@ const Admin = () => (
     <PrivateRoute path='/consult/taro' component={ConsultTaro} />
     <PrivateRoute path='/faq/astro' component={FaqAstro} />
     <PrivateRoute path='/faq/bars' component={FaqBars} />
+    <PrivateRoute path='/faq/bars/:id' component={FaqForm} />
     <PrivateRoute path='/faq/beads' component={FaqBeads} />
     <PrivateRoute path='/faq/bracelets' component={FaqBracelets} />
     <PrivateRoute path='/articles' component={Articles} />
