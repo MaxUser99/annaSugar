@@ -33,8 +33,8 @@ const Admin = () => (
     <PrivateRoute path='/consult/taro' component={ConsultTaro} />
     <PrivateRoute path='/faq/astro' component={FaqAstro} />
     <PrivateRoute path='/faq/bars' component={FaqBars} />
-    <PrivateRoute path='/faq/bars/:id' component={EditFaqForm} />
-    <PrivateRoute path='/faq/bars/new' component={NewFaqForm} />
+    <PrivateRoute path='/faq/*/:id' component={EditFaqForm} />
+    <PrivateRoute path='/faq/*/new' component={NewFaqForm} />
     <PrivateRoute path='/faq/beads' component={FaqBeads} />
     <PrivateRoute path='/faq/bracelets' component={FaqBracelets} />
     <PrivateRoute path='/articles/new' component={Articles} />
