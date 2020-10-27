@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
+import { navigate } from 'gatsby';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import Layout from '../../components/layout';
-import Button from '../../../button/button';
 import Container from '../../../container/container';
-import backArrow from '../../../../assets/icons/back-arrow.svg';
-import LangButton from '../../../header/components/langButton';
 import LANGS from '../../../../constants/langs';
-import { navigate } from 'gatsby';
 import Input from '../../../input/input';
+import Header from '../components/header';
+import SubHeader from '../components/subheader';
 
 const FaqForm = ({
   initial = {},
@@ -24,30 +23,17 @@ const FaqForm = ({
     ...rest 
   } = useForm();
 
-  const backClickHandler = () => navigate('../');              
-
-  const langClickHandler = lang => () => setLang(lang);
-
   const { onSubmit, ...restFormProps } = formProps;
   const date = initial.date || new Date();
 
   return (
     <Layout>
-      <FormHeader alignItems='center' justifyContent='center' fullWidth>
-        <BackButton onClick={backClickHandler}>
-          <img src={backArrow} alt='' />
-        </BackButton>
-        <PageTitle>
-          Edit FAQ
-        </PageTitle>
-      </FormHeader>
-      <SubHeader justifyContent='space-between' fullWidth>
-        <Date>{date.toString()}</Date>
-        <LangButtons>
-          <LangButton onClick={langClickHandler(LANGS.RU)} lang={LANGS.RU} active={lang === LANGS.RU} />
-          <LangButton onClick={langClickHandler(LANGS.EN)} lang={LANGS.EN} active={lang === LANGS.EN} />
-        </LangButtons>
-      </SubHeader>
+      <Header>Edit FAQ</Header>
+      <SubHeader
+        date={date}
+        setLang={setLang}
+        activeLang={lang}
+      />
       <Form onSubmit={handleSubmit(onSubmit)} {...restFormProps}>
         <Input 
           name='title'
@@ -86,39 +72,5 @@ const Form = styled.form`
     margin-top: 40px;
   }
 `;
-
-const BackButton = styled(Button)`
-  position: absolute;
-  left: 0;
-  width: auto;
-  height: auto;
-  padding: 7px;
-  background: transparent;
-  box-shadow: none;
-  border: 1px solid transparent;
-  :hover {
-    border-color: black;
-    background-color: transparent;
-  }
-  img {
-    width: 18px;
-    height: 18px;
-  }
-`;
-
-const FormHeader = styled(Container)`
-  position: relative;
-  margin-top: 64px;
-  margin-bottom: 20px;
-`;
-
-const PageTitle = styled.h3``;
-
-const SubHeader = styled(Container)`
-  border-bottom: 1px solid black;
-  padding-bottom: 16px;
-  `;
-
-const LangButtons = styled(Container)``;
 
 export default FaqForm;
