@@ -35,11 +35,13 @@ const Admin = () => (
     <PrivateRoute path='/faq/bars/:id' component={EditFaqForm} />
     <PrivateRoute path='/faq/beads' component={FaqBeads} />
     <PrivateRoute path='/faq/bracelets' component={FaqBracelets} />
-    <PrivateRoute path='/articles' component={Articles} />
     <PrivateRoute path='/articles/new' component={Articles} />
     <PrivateRoute path='/articles/:id' component={Articles} />
     <PrivateRoute path='/reviews' component={Reviews} />
-    <Redirect to='articles' default noThrow />
+    <PrivateRoute path='/articles' component={Articles} />
+    <PrivateRoute path='*' component={() => <Redirect to='articles' noThrow />} />
+    {/* <Redirect to='articles' default noThrow /> */}
+    {/* <Redirect to='articles' path='*' noThrow /> */}
   </StyledRouter>
 );
 
