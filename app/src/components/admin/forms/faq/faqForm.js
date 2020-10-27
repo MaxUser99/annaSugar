@@ -1,23 +1,27 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
-import Layout from '../components/layout';
-import Button from '../../button/button';
-import Container from '../../container/container';
-import backArrow from '../../../assets/icons/back-arrow.svg';
-import LangButton from '../../header/components/langButton';
-import LANGS from '../../../constants/langs';
+import { useForm } from 'react-hook-form';
+import Layout from '../../components/layout';
+import Button from '../../../button/button';
+import Container from '../../../container/container';
+import backArrow from '../../../../assets/icons/back-arrow.svg';
+import LangButton from '../../../header/components/langButton';
+import LANGS from '../../../../constants/langs';
 import { navigate } from 'gatsby';
-import Input from '../../input/input';
+import Input from '../../../input/input';
 
 const FaqForm = ({
-  initial = {}
+  initial = {},
+  buttons,
+  formProps,
+  disabled
 }) => {
+  const { register, handleSubmit } = useForm();
   const [ lang, setLang ] = useState(LANGS.RU)
   const date = initial.date || new Date();
 
   const backClickHandler = () => navigate('../');
-  console.log('init')
+
   return (
     <Layout>
       <FormHeader alignItems='center' justifyContent='center' fullWidth>
@@ -35,18 +39,22 @@ const FaqForm = ({
           <LangButton lang={LANGS.EN} active={lang === LANGS.EN} />
         </LangButtons>
       </SubHeader>
-      <Form>
+      <Form {...formProps}>
         <Input 
           name='title'
           label='title'
+          disabled={disabled}
           placeholder='Enter FAQ title'
+          // inputRef={register({ required: true })}
           defaultValue={initial.title} />
         <Input 
           name='text'
           label='text'
+          disabled={disabled}
           placeholder='Enter FAQ text'
           defaultValue={initial.text}
           multiline />
+        { buttons }
       </Form>
     </Layout>
   )
@@ -95,8 +103,4 @@ const SubHeader = styled(Container)`
 
 const LangButtons = styled(Container)``;
 
-const mapStateToProps = ({ content: { faq: { onEdit }}}) => ({
-  initial: onEdit || undefined
-});
-
-export default connect(mapStateToProps)(FaqForm);
+export default FaqForm;

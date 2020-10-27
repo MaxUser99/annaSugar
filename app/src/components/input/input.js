@@ -16,7 +16,11 @@ const Input = ({
     : StyledInput;
 
   return (
-    <StyledContainer className={className} direction='column' alignItems='flex-start' fullWidth>
+    <StyledContainer
+      className={className}
+      direction='column'
+      alignItems='flex-start'
+      fullWidth>
       <Label error={error} htmlFor={`${name}-input`}>{label}</Label>
       <InputComponent
         id={`${name}-input`}
@@ -39,10 +43,11 @@ const Textarea = React.forwardRef((props, ref) => {
   const componentRef = ref || React.createRef();
 
   useEffect(() => {
+    console.log('case')
     if (componentRef.current) {
       setHeight(componentRef.current.scrollHeight);
     }
-  }, []);
+  }, [props.defaultValue]);
 
   const changeHandler = e => {
     if (componentRef.current) {
@@ -77,16 +82,20 @@ const inputStyles = css`
   box-sizing: border-box;
   color: ${({ theme }) => ( theme.text.lighter2 )};
   background-color: transparent;
-  &::placeholder {
+  ::placeholder {
     opacity: 0.4;
   }
-  &:focus {
+  :focus {
     outline: none;
     border-color: ${({ error }) => (error ? '#e85d5d' : 'black')};
   }
-  &[type="password"] {
+  [type="password"] {
     font-family: caption;
     letter-spacing: 1px;
+  }
+  :disabled {
+    border-color: #aaa;
+    color: #aaa;
   }
 `;
 

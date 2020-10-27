@@ -29,6 +29,7 @@ export const loadFaqs = () => {
     }, []);
 
     await delay(1000).then(() => dispatch(setFaqs(preparedData)));
+    return preparedData;
   }
 } 
 
