@@ -16,11 +16,20 @@ const FaqForm = ({
   formProps,
   disabled
 }) => {
-  const { register, handleSubmit } = useForm();
   const [ lang, setLang ] = useState(LANGS.RU)
-  const date = initial.date || new Date();
+  const {
+    register,
+    handleSubmit,
+    formState: { isDirty},
+    ...rest 
+  } = useForm();
 
-  const backClickHandler = () => navigate('../');
+  const backClickHandler = () => navigate('../');              
+
+  const langClickHandler = lang => () => setLang(lang);
+
+  const { onSubmit, ...restFormProps } = formProps;
+  const date = initial.date || new Date();
 
   return (
     <Layout>
@@ -35,30 +44,39 @@ const FaqForm = ({
       <SubHeader justifyContent='space-between' fullWidth>
         <Date>{date.toString()}</Date>
         <LangButtons>
-          <LangButton lang={LANGS.RU} active={lang === LANGS.RU} />
-          <LangButton lang={LANGS.EN} active={lang === LANGS.EN} />
+          <LangButton onClick={langClickHandler(LANGS.RU)} lang={LANGS.RU} active={lang === LANGS.RU} />
+          <LangButton onClick={langClickHandler(LANGS.EN)} lang={LANGS.EN} active={lang === LANGS.EN} />
         </LangButtons>
       </SubHeader>
-      <Form {...formProps}>
+      <Form onSubmit={handleSubmit(onSubmit)} {...restFormProps}>
         <Input 
           name='title'
           label='title'
           disabled={disabled}
           placeholder='Enter FAQ title'
-          // inputRef={register({ required: true })}
+          inputRef={register({ required: true })}
           defaultValue={initial.title} />
         <Input 
           name='text'
           label='text'
           disabled={disabled}
           placeholder='Enter FAQ text'
+          inputRef={register({ required: true })}
           defaultValue={initial.text}
           multiline />
-        { buttons }
+        <Buttons justifyContent='center' fullWidth>
+          { buttons(isDirty) }
+        </Buttons>
       </Form>
     </Layout>
   )
 }
+
+const Buttons = styled(Container)`
+  button:not(:last-of-type) {
+    margin-right: 20px;
+  }
+`;
 
 const Form = styled.form`
   display: flex;

@@ -1,13 +1,29 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import FaqForm from './faqForm';
 import Button from '../../../button/button';
 import { connect } from 'react-redux';
 import { loadFaqs, editFAQ } from '../../../../store/content/faqActions';
 
-const EditFaqForm = ({ initial, loadFaqs, editFAQ, id }) => {
-  const submitHandler = () => {
-    console.log('submit');
+const SUBMIT_ACTION = {
+  PUBLISH: 'PUBLISH',
+  SAVE: 'SAVE',
+}
+
+const EditFaqForm = ({
+  initial,
+  loadFaqs,
+  editFAQ,
+  id
+}) => {
+  const [ submitAction, setSubmitAction ] = useState();
+
+  const submitHandler = (data) => {
+    console.log('submit: ', data);
+    console.log('submit action: ', submitAction);
   }
+
+  const saveClickHandler = () => setSubmitAction(SUBMIT_ACTION.SAVE);
+  const publishClickHandler = () => setSubmitAction(SUBMIT_ACTION.PUBLISH);
 
   useEffect(() => {
     async function loadOnEditFAQ() {
@@ -25,10 +41,17 @@ const EditFaqForm = ({ initial, loadFaqs, editFAQ, id }) => {
     <FaqForm
       disabled={!initial}
       initial={initial}
-      buttons={null}
       formProps={{
         onSubmit: submitHandler
       }}
+      buttons={
+        (isDirty) => (
+          <>
+            <Button type='submit' onClick={saveClickHandler} disabled={!isDirty}>Save</Button>
+            <Button type='submit' onClick={publishClickHandler} disabled={!isDirty}>Publish</Button>
+          </>
+        )
+      }
     />
   );
 }

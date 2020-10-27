@@ -12,10 +12,10 @@ const icons = {
   [LANGS.EN]: { active: enIcon, mutted: enIconMutted },
 };
 
-const LangButton = ({ lang, active }) => {
+const LangButton = ({ lang, active, onClick }) => {
   const icon = icons[lang][active ? 'active' : 'mutted'];
   return (
-    <StyledButton>
+    <StyledButton onClick={onClick}>
       <Img src={icon} alt='' />
     </StyledButton>
   );
