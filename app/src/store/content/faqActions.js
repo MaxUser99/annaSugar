@@ -10,6 +10,19 @@ export const setFaqs = faqs => ({ type: SET_FAQs, payload: faqs });
 export const setFaqsLoading = () => ({ type: SET_FAQs_LOADING });
 export const editFAQ = item => ({ type: SET_ON_EDIT_FAQ, payload: item });
 
+export const createFaq = (faqData) => {
+  return async (dispatch) => {
+    console.log('should create new FAQ');
+    return null;
+  }
+}
+
+export const publishFaq = (id) => {
+  return async (dispatch) => {
+    console.log('should publish: ', id);
+  }
+}
+
 export const loadFaqs = () => {
   return async (dispatch, getState) => {
     const { content: { faq: { status }}} = getState();

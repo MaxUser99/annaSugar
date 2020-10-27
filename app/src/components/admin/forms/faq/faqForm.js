@@ -20,7 +20,7 @@ const FaqForm = ({
   const {
     register,
     handleSubmit,
-    formState: { isDirty},
+    formState,
     ...rest 
   } = useForm();
 
@@ -65,7 +65,7 @@ const FaqForm = ({
           defaultValue={initial.text}
           multiline />
         <Buttons justifyContent='center' fullWidth>
-          { buttons(isDirty) }
+          { buttons(formState) }
         </Buttons>
       </Form>
     </Layout>

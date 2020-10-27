@@ -41,11 +41,9 @@ const EditFaqForm = ({
     <FaqForm
       disabled={!initial}
       initial={initial}
-      formProps={{
-        onSubmit: submitHandler
-      }}
+      formProps={{ onSubmit: submitHandler }}
       buttons={
-        (isDirty) => (
+        ({ isDirty }) => (
           <>
             <Button type='submit' onClick={saveClickHandler} disabled={!isDirty}>Save</Button>
             <Button type='submit' onClick={publishClickHandler} disabled={!isDirty}>Publish</Button>

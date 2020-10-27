@@ -18,6 +18,7 @@ import FaqBars from '../components/admin/subpages/faqBars';
 import FaqBeads from '../components/admin/subpages/faqBeads';
 import FaqBracelets from '../components/admin/subpages/faqBracelets';
 import EditFaqForm from '../components/admin/forms/faq/editFaqForm';
+import NewFaqForm from '../components/admin/forms/faq/newFaqForm';
 
 const Admin = () => (
   <StyledRouter basepath='/admin'>
@@ -33,6 +34,7 @@ const Admin = () => (
     <PrivateRoute path='/faq/astro' component={FaqAstro} />
     <PrivateRoute path='/faq/bars' component={FaqBars} />
     <PrivateRoute path='/faq/bars/:id' component={EditFaqForm} />
+    <PrivateRoute path='/faq/bars/new' component={NewFaqForm} />
     <PrivateRoute path='/faq/beads' component={FaqBeads} />
     <PrivateRoute path='/faq/bracelets' component={FaqBracelets} />
     <PrivateRoute path='/articles/new' component={Articles} />
@@ -40,8 +42,6 @@ const Admin = () => (
     <PrivateRoute path='/reviews' component={Reviews} />
     <PrivateRoute path='/articles' component={Articles} />
     <PrivateRoute path='*' component={() => <Redirect to='articles' noThrow />} />
-    {/* <Redirect to='articles' default noThrow /> */}
-    {/* <Redirect to='articles' path='*' noThrow /> */}
   </StyledRouter>
 );
 
