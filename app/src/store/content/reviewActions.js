@@ -36,6 +36,18 @@ export const loadReviewItem = id => {
   }
 }
 
+export const createReview = date => {
+  return async (dispatch) => {
+    return null;
+  }
+}
+
+export const publishReview = date => {
+  return async (dispatch) => {
+    return null;
+  }
+}
+
 // test
 function delay(ms) {
   return new Promise((resolve) => {

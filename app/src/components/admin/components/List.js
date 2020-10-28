@@ -13,7 +13,7 @@ const List = ({
     {
       data.map(item => (
         <Preview
-          key={item.title}
+          key={item.id}
           image={item[imageField]}
           name={item[nameField]}
           description={item[descriptionField]}

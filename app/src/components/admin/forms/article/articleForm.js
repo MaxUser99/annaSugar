@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import Layout from '../../components/layout';
@@ -22,6 +22,10 @@ const ArticleForm = ({
   const [ lang, setLang ] = useState(LANGS.RU)
   const { register, handleSubmit, formState } = useForm();
 
+  useEffect(() => {
+    setImage(initial.image);
+  }, [ initial.image ])
+
   const { onSubmit, ...restFormProps } = formProps;
   const date = initial.date || new Date();
 
@@ -40,7 +44,8 @@ const ArticleForm = ({
   }
 
   const submitCallback = data => onSubmit({ ...data, image });
-
+  console.log('initial: ', initial.image)
+  console.log('image: ', image)
   return (
     <Layout>
       <Header>{title}</Header>

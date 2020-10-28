@@ -9,6 +9,8 @@ import NewArticleForm from '../components/admin/forms/article/newArticleForm';
 import EditArticleForm from '../components/admin/forms/article/editArticleForm';
 
 import Reviews from '../components/admin/subpages/reviews';
+import NewReviewForm from '../components/admin/forms/review/NewReviewForm';
+import EditReviewForm from '../components/admin/forms/review/EditReviewForm';
 
 import CatalogBeads from '../components/admin/subpages/catalogBeads';
 import CatalogBracelets from '../components/admin/subpages/catalogBracelets';
@@ -26,7 +28,6 @@ import FaqBeads from '../components/admin/subpages/faqBeads';
 import FaqBracelets from '../components/admin/subpages/faqBracelets';
 import EditFaqForm from '../components/admin/forms/faq/editFaqForm';
 import NewFaqForm from '../components/admin/forms/faq/newFaqForm';
-import newArticleForm from '../components/admin/forms/article/newArticleForm';
 
 const Admin = () => (
   <StyledRouter basepath='/admin'>
@@ -79,11 +80,19 @@ const formsRoutes = [
   },
   {
     pathnames: ['/articles/new'],
-    component: newArticleForm
+    component: NewArticleForm
   },
   {
     pathnames: ['/articles/:id'],
     component: EditArticleForm
+  },
+  {
+    pathnames: ['/reviews/new'],
+    component: NewReviewForm
+  },
+  {
+    pathnames: ['/reviews/:id'],
+    component: EditReviewForm
   },
 ]
 
