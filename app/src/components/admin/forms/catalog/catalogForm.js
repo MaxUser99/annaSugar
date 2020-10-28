@@ -19,6 +19,7 @@ const CatalogForm = ({
 }) => {
   const fileInputRef = React.createRef();
   const [ image, setImage ] = useState(initial.image);
+  const [ gallery, setGallery ] = useState([]);
   const [ lang, setLang ] = useState(LANGS.RU)
   const { register, handleSubmit, formState } = useForm();
 
@@ -45,7 +46,6 @@ const CatalogForm = ({
 
   const submitCallback = data => onSubmit({ ...data, image });
 
-
   return (
     <Layout>
       <Header>{title}</Header>
@@ -55,41 +55,51 @@ const CatalogForm = ({
         activeLang={lang}
       />
       <Form onSubmit={handleSubmit(submitCallback)} {...restFormProps}>
-        <StyledContainer alignItems='flex-start' fullWidth>
-          <ImageWrapper $image={image} justifyContent='center' alignItems='center'>
-            <IconButton onClick={galleryBtnClickHandler}>
-              <GalleryIcon css={{ width: '40px' }} />
-            </IconButton>
-            {
-              image &&
-              <IconButton onClick={removeImage} $closeBtn>
-                <CloseIcon css={{ stroke: 'black' }} />
+        <StyledContainer alignItems='stretch' fullWidth>
+          <ImagesBlock direction='column' fullWidth>
+            <ImageWrapper $image={image} justifyContent='center' alignItems='center'>
+              <IconButton onClick={galleryBtnClickHandler}>
+                <GalleryIcon css={{ width: '40px' }} />
               </IconButton>
-            }
-            <FileInput
-              ref={fileInputRef}
-              type='file'
-              accept="image/*"
-              onChange={fileChangeHandler} />
-          </ImageWrapper>
+              {
+                image &&
+                <IconButton onClick={removeImage} $closeBtn>
+                  <CloseIcon css={{ stroke: 'black' }} />
+                </IconButton>
+              }
+              <FileInput
+                ref={fileInputRef}
+                type='file'
+                accept="image/*"
+                onChange={fileChangeHandler} />
+            </ImageWrapper>
+          </ImagesBlock>
           <Container direction='column' fullWidth>
             <Input
-              name='title'
+              name='name'
               label='title'
               disabled={disabled}
-              placeholder='Enter article title'
+              placeholder='Enter item title'
               inputRef={register({ required: true })}
-              defaultValue={initial.title}
+              defaultValue={initial.name}
             />
             <Input
-              name='description'
-              label='Description'
+              name='brief'
+              label='Short Description'
               disabled={disabled}
-              placeholder='Enter article description'
+              placeholder='Enter item short description'
               inputRef={register({ required: true })}
-              defaultValue={initial.description}
+              defaultValue={initial.brief}
               multiline
             />
+            <PriceWrapper alignItems='center' fullWidth>
+              <PriceInput
+                name='firstPrice'
+                type='number'
+              />
+              /
+              <PriceInput />
+            </PriceWrapper>
           </Container>
         </StyledContainer>
         <Buttons justifyContent='center' fullWidth>
@@ -99,6 +109,30 @@ const CatalogForm = ({
     </Layout>
   );
 }
+
+const PriceInput = styled(Input)`
+  :not(:last-of-type) {
+    margin-bottom: 0;
+  }
+  :first-of-type {
+    margin-right: 10px
+  }
+  :last-of-type {
+    margin-left: 10px
+  }
+  > input {
+    background: white;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 10px;
+  }
+`;
+
+const PriceWrapper = styled(Container)`
+  margin-top: auto;
+  max-width: 400px;
+  min-width: 300px;
+`;
 
 const StyledContainer = styled(Container)`
   margin-bottom: 40px;
@@ -154,12 +188,16 @@ const ImageWrapper = styled(Container)`
   max-width: 300px;
   width: 100%;
   height: 400px;
-  margin-right: 20px;
   background: ${({ $image, theme }) => (
     $image
     ? `url(${$image}) center/cover`
     : theme.color.darkBeige
   )};
+`;
+
+const ImagesBlock = styled(Container)`
+  max-width: 300px;
+  margin-right: 20px;
 `;
 
 export default CatalogForm;
