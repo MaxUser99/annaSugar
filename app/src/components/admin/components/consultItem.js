@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Preview from '../../preview/preview';
 import Container from '../../container/container';
 
-const CatalogItem = ({
+const ConsultItem = ({
   item,
   editClickHandler
 }) => (
@@ -21,9 +21,9 @@ const CatalogItem = ({
       <EditLink onClick={editClickHandler} to={`${item.id}`}>Edit</EditLink>
     </Container>
     <Preview
-      image={`/${item.images[0]}`}
-      name={item.name}
-      description={item.brief}
+      image={`/${item.image}`}
+      name={item.title}
+      description={item.short}
       price={item.price}
     />
   </Wrapper>
@@ -50,4 +50,4 @@ const EditLink = styled(Link)`
     }
 `;
 
-export default CatalogItem;
+export default ConsultItem;

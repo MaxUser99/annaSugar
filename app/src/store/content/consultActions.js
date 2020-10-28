@@ -17,6 +17,16 @@ export const PUSH_TARO = 'PUSH_TARO';
 export const PUSH_RUNE = 'PUSH_RUNE';
 export const PUSH_RITUAL = 'PUSH_RITUAL';
 
+export const SET_REVIEW_ASTRO = 'SET_REVIEW_ASTRO';
+export const SET_REVIEW_TARO = 'SET_REVIEW_TARO';
+export const SET_REVIEW_RUNE = 'SET_REVIEW_RUNE';
+export const SET_REVIEW_RITUAL = 'SET_REVIEW_RITUAL';
+
+export const setReviewAstro = (item) => ({ type: SET_REVIEW_ASTRO, payload: item });
+export const setReviewTaro = (item) => ({ type: SET_REVIEW_TARO, payload: item });
+export const setReviewRune = (item) => ({ type: SET_REVIEW_RUNE, payload: item });
+export const setReviewRitual = (item) => ({ type: SET_REVIEW_RITUAL, payload: item });
+
 export const setAstroLoading = () => ({ type: SET_ASTRO_LOADING });
 export const setTaroLoading = () => ({ type: SET_TARO_LOADING });
 export const setRuneLoading = () => ({ type: SET_RUNE_LOADING });
