@@ -46,9 +46,6 @@ const Admin = () => (
     <PrivateRoute path='/reviews' component={Reviews} />
     <PrivateRoute path='/articles' component={Articles} />
 
-    {/* <PrivateRoute path='/articles/new' component={NewArticleForm} />
-    <PrivateRoute path='/articles/:id' component={EditArticleForm} /> */}
-
     {
       formsRoutes.map(({ pathnames, component }) => (
         pathnames.map(path => (

@@ -32,11 +32,15 @@ const Layout = ({ children }) => (
         </Nav>
       </Header>
     </ContentWrapper>
-    <ContentWrapper direction='column'>
+    <StyledContentWrapper direction='column'>
       { children }
-    </ContentWrapper>
+    </StyledContentWrapper>
   </StyledContainer>
 );
+
+const StyledContentWrapper = styled(ContentWrapper)`
+  position: relative;
+`;
 
 const Link = styled(BrowserLink)`
   text-decoration: none;

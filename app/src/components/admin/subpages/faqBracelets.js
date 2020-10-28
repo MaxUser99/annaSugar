@@ -7,26 +7,32 @@ import Container from '../../container/container';
 import ExpansionPanel from '../../expansionPanel/expansionPanel';
 import Layout from '../components/layout';
 import { editFAQ } from '../../../store/content/faqActions';
+import Fab from '../components/fab';
 
-const FaqBracelets = ({ data, editFAQ }) => (
-  <Layout>
-    {
-      data.map(x => {
-        const linkClickHandler = () => editFAQ(x);
-        return (
-          <Container key={x.id} direction='column' fullWidth>
-            <Container>
-              <Date>{x.date.toLocaleDateString()}</Date>
-              <Separator>|</Separator>
-              <EditLink onClick={linkClickHandler} to={`${x.id}`}>Edit</EditLink>
+const FaqBracelets = ({ data, editFAQ, navigate }) => {
+  const newClickHandler = () => navigate('new');
+
+  return (
+    <Layout>
+      {
+        data.map(x => {
+          const linkClickHandler = () => editFAQ(x);
+          return (
+            <Container key={x.id} direction='column' fullWidth>
+              <Container>
+                <Date>{x.date.toLocaleDateString()}</Date>
+                <Separator>|</Separator>
+                <EditLink onClick={linkClickHandler} to={`${x.id}`}>Edit</EditLink>
+              </Container>
+              <StyledPanel key={x.id} title={x.title} text={x.text} />
             </Container>
-            <StyledPanel key={x.id} title={x.title} text={x.text} />
-          </Container>
-        )
-      })
-    }
-  </Layout>
-);
+          )
+        })
+      }
+      <Fab onClick={newClickHandler} />
+    </Layout>
+  )
+}
 
 const Date = styled.p``;
 

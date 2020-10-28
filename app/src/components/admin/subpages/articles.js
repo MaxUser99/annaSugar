@@ -4,16 +4,20 @@ import Layout from '../components/layout';
 import { loadArticles } from '../../../store/content/articleActions';
 import List from '../components/List';
 import { setReviewArticle } from '../../../store/content/articleActions';
+import Fab from '../components/fab';
 
 const Articles = ({
   articles,
   page,
   loadArticles,
-  setReviewArticle
+  setReviewArticle,
+  navigate
 }) => {
   useEffect(() => {
     if (page === null) loadArticles();
   }, []);
+
+  const createNewClickHandler = () => navigate('new');
 
   return (
     <Layout>
@@ -29,6 +33,7 @@ const Articles = ({
           />
         </>
       }
+      <Fab onClick={createNewClickHandler} />
     </Layout>
   );
 }
