@@ -18,7 +18,7 @@ import CatalogKindles from '../components/admin/subpages/catalogKindles';
 import CatalogOthers from '../components/admin/subpages/catalogOthers';
 
 import ConsultAstro from '../components/admin/subpages/consultAstro';
-import ConsultRituals from '../components/admin/subpages/consultRithuals';
+import ConsultRituals from '../components/admin/subpages/consultRituals';
 import ConsultRunes from '../components/admin/subpages/consultRunes';
 import ConsultTaro from '../components/admin/subpages/consultTaro';
 

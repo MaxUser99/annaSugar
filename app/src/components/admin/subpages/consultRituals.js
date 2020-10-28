@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import Layout from '../components/layout';
 import Fab from '../components/fab';
 import ConsultItem from '../components/consultItem';
-import { setReviewAstro } from '../../../store/content/consultActions';
+import { setReviewRitual } from '../../../store/content/consultActions';
 
-const ConsultAstro = ({
+const ConsultRituals = ({
   consultations,
   setReviewItem,
   navigate
@@ -24,12 +24,12 @@ const ConsultAstro = ({
   </Layout>
 );
 
-const mapStateToProps = ({ content: { astro: { data }}}) => ({
+const mapStateToProps = ({ content: { ritual: { data }}}) => ({
   consultations: data
 });
 
 const mapDispatchToProps = dispatch => ({
-  setReviewItem: item => dispatch(setReviewAstro(item))
+  setReviewItem: item => dispatch(setReviewRitual(item))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ConsultAstro);
+export default connect(mapStateToProps, mapDispatchToProps)(ConsultRituals);
