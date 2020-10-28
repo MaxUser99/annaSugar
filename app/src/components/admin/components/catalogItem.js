@@ -24,6 +24,7 @@ const CatalogItem = ({
       image={`/${item.images[0]}`}
       name={item.name}
       description={item.brief}
+      price={item.price}
     />
   </Wrapper>
 )

@@ -6,6 +6,7 @@ import OptionsSelect from './optionsSelect';
 import OptionsList from './optionsList';
 import Button from '../../components/button/button';
 import infoIcon from '../../assets/icons/info.svg';
+import Price from '../../components/price/price';
 
 const ConsultItem = ({ item }) => {
   const {
@@ -22,10 +23,6 @@ const ConsultItem = ({ item }) => {
     faqList,
     info,
   } = item;
-
-  const [ amount, cents ] = price
-    ? price.toFixed(2).split('.')
-    : ['-', ''];
 
   return (
     <Container direction='column' fullWidth>
@@ -48,11 +45,7 @@ const ConsultItem = ({ item }) => {
           {
             price && <>
               <Label>Цена</Label>
-              <Price>
-                <Amount>{amount}</Amount>
-                <Cents>.{cents} &#8381; </Cents>
-                <Remark>{ `(${priceRemark})` }</Remark>
-              </Price>
+              <StyledPrice remark={`(${priceRemark})`}>{price}</StyledPrice>
             </>
           }
           <Button>заказать</Button>
@@ -104,12 +97,14 @@ const Title = styled.h2`
   line-height: 32px;
   color: ${({ theme }) => theme.text.header};
 `;
-const Price = styled.p`
+
+const StyledPrice = styled(Price)`
   margin: 0;
   & + button {
     margin-top: 32px
   }
 `;
+
 const Short = styled.p`
   font-size: 14px;
   line-height: 28px;
@@ -122,19 +117,4 @@ const Label = styled.p`
   margin: 32px 0 0;
 `;
 
-const Amount = styled.span`
-  font-weight: 300;
-  font-size: 35px;
-  line-height: 43px;
-  letter-spacing: 1px;
-`;
-const Cents = styled.span`
-  font-weight: 300;
-  font-size: 16px;
-  line-height: 30px;
-  letter-spacing: 1px;
-`;
-const Remark = styled.span`
-  letter-spacing: normal;
-`;
 export default ConsultItem;

@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import { Link } from 'gatsby';
 import Container from '../container/container';
 import cartIcon from '../../assets/icons/cart.svg';
+import Price from '../price/price';
 
 const CatalogItem = ({ item, onClick }) => {
   const { id, images, name, brief, price } = item;
   const [ imageLoaded, setImageLoaded ] = useState(false);
-  const [ amount, cents ] = price.toFixed(2).split('.');
 
   const imageLoadHandler = () => setImageLoaded(true);
   const nameClickHandler = () => onClick(item);
@@ -21,10 +21,7 @@ const CatalogItem = ({ item, onClick }) => {
         <Name onClick={nameClickHandler} to={id}>{name}</Name>
         <Brief>{brief}</Brief>
         <Purchase alignItems='center' justifyContent='space-between' fullWidth>
-          <Price>
-            <Amount>{amount}</Amount>
-            <Cents>.{cents} &#8381;</Cents>
-          </Price>
+          <Price>{price}</Price>
           <Button>
             <CartIcon src={cartIcon} alt='' />
             <span>Консультация</span>
@@ -102,22 +99,6 @@ const Brief = styled.p`
   overflow: hidden;
   margin: 0;
   color: ${({ theme }) => theme.text.default};
-`;
-
-const Price = styled.p``;
-
-const Amount = styled.span`
-  font-weight: 300;
-  font-size: 35px;
-  line-height: 43px;
-  letter-spacing: 1px;
-`;
-
-const Cents = styled.span`
-  font-weight: 300;
-  font-size: 16px;
-  line-height: 30px;
-  letter-spacing: 1px;
 `;
 
 const Button = styled.button`

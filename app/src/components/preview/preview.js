@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link as BrowserLink } from 'gatsby';
 import Container from '../container/container';
+import Price from '../price/price';
 
 const Preview = ({
   image,
@@ -10,7 +11,8 @@ const Preview = ({
   description,
   date,
   onNameClick,
-  linkProps = {}
+  price,
+  linkProps = {},
 }) => {
   let dateString = '';
   if (date) {
@@ -38,7 +40,7 @@ const Preview = ({
   }
 
   const {
-    show,
+    show: showLink,
     text,
     to,
     onClick,
@@ -55,12 +57,16 @@ const Preview = ({
           <Title $clickable={!!onNameClick}>{name}</Title>
           <Text>{description}</Text>
           {
-            show &&
+            showLink &&
             <Link
               onClick={onClick}
               to={to}
               children={text}
             />
+          }
+          {
+            price &&
+            <StyledPrice>{price}</StyledPrice>
           }
         </TextContainer>
       </Container>
@@ -68,6 +74,10 @@ const Preview = ({
   );
 }
 
+const StyledPrice = styled(Price)`
+  margin-top: auto;
+  margin-bottom: 0;
+`;
 
 const StyledContainer = styled(Container)`
   &:not(:last-of-type) {
