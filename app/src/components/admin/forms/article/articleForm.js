@@ -26,7 +26,6 @@ const ArticleForm = ({
   const date = initial.date || new Date();
 
   const galleryBtnClickHandler = () => {
-    console.log('click, ', fileInputRef.current)
     if (fileInputRef.current) {
       fileInputRef.current.click();
     }
@@ -34,12 +33,14 @@ const ArticleForm = ({
 
   const removeImage = () => setImage(null);
 
-  const fileChangeHandler = async ({ target: { value, files }}) => {
+  const fileChangeHandler = async ({ target: { files }}) => {
     if (files.length) {
       setImage(URL.createObjectURL(files[0]));
     }
   }
-  console.log('image: ', image);
+
+  const submitCallback = data => onSubmit({ ...data, image });
+
   return (
     <Layout>
       <Header>{title}</Header>
@@ -48,7 +49,7 @@ const ArticleForm = ({
         setLang={setLang}
         activeLang={lang}
       />
-      <Form onSubmit={handleSubmit(onSubmit)} {...restFormProps}>
+      <Form onSubmit={handleSubmit(submitCallback)} {...restFormProps}>
         <StyledContainer alignItems='flex-start' fullWidth>
           <ImageWrapper $image={image} justifyContent='center' alignItems='center'>
             <IconButton onClick={galleryBtnClickHandler}>

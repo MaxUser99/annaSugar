@@ -46,6 +46,7 @@ export const loadReviewArticle = id => {
 
 export const editArticle = (data) => {
   return async dispatch => {
+    console.log('should edit article: ', data);
     return null;
   }
 }
