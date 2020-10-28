@@ -12,27 +12,30 @@ const Preview = ({
   onNameClick,
   linkProps = {}
 }) => {
-  const month = date.toLocaleDateString('EN-US', { month: 'long' });
-  const year = date.getFullYear();
-  const dayOfMonth = date.getDate();
+  let dateString = '';
+  if (date) {
+    const month = date.toLocaleDateString('EN-US', { month: 'long' });
+    const year = date.getFullYear();
+    const dayOfMonth = date.getDate();
 
-  let day;
-  switch (dayOfMonth) {
-    case 1:
-      day = '1st';
-      break;
-    case 2:
-      day = '2nd';
-      break;
-    case 3:
-      day = '3rd';
-      break;
-    default:
-      day = `${dayOfMonth}th`;
-      break;
+    let day;
+    switch (dayOfMonth) {
+      case 1:
+        day = '1st';
+        break;
+      case 2:
+        day = '2nd';
+        break;
+      case 3:
+        day = '3rd';
+        break;
+      default:
+        day = `${dayOfMonth}th`;
+        break;
+    }
+
+    dateString = `${month}, ${day} ${year}`;
   }
-
-  const dateString = `${month}, ${day} ${year}`;
 
   const {
     show,
@@ -43,8 +46,8 @@ const Preview = ({
 
   return (
     <StyledContainer direction='column' fullWidth>
-      <Date>{dateString}</Date>
-      <Container alignItems='stretch'>
+      { dateString && <Date>{dateString}</Date> }
+      <Container alignItems='stretch' fullWidth>
         <ImageWrapper>
           <Image src={image} />
         </ImageWrapper>
@@ -59,8 +62,6 @@ const Preview = ({
               children={text}
             />
           }
-          {/* <Link onClick={clickHandler} to={`${id}`}>Read &gt;</Link> */}
-          {/* <Link onClick={clickHandler} to={`/blog/${id}`}>Read &gt;</Link> */}
         </TextContainer>
       </Container>
     </StyledContainer>
@@ -91,7 +92,8 @@ const TextContainer = styled(Container)`
 `;
 
 const ImageWrapper = styled(Container)`
-  width: 342px;
+  max-width: 342px;
+  width: 100%;
   height: 270px;
 `;
 

@@ -74,7 +74,7 @@ function itemsLoader(page, contentType) {
   return async function (dispatch) {
     dispatch(setLoading());
 
-    return delay(1000).then(() => dispatch(pushItems(mockBracelets, page)));
+    return delay(400).then(() => dispatch(pushItems(mockBracelets, page)));
   }
 }
 
@@ -98,7 +98,7 @@ function itemLoader(id, contentType) {
   return async function (dispatch) {
     const item = mockBracelets.find(x => x.id === id) || null;
 
-    await delay(1000).then(() => dispatch(setReviewItem(item)));
+    await delay(400).then(() => dispatch(setReviewItem(item)));
     return item;
   }
 }
