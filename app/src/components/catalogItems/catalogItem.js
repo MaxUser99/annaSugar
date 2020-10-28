@@ -74,21 +74,24 @@ const Name = styled(Link)`
   transition: 0.3s;
   text-decoration: none;
   color: ${({ theme }) => theme.text.header};
-  &::after {
-    content: '>';
-    position: absolute;
-    left: -15px;
-    opacity: 0;
-    transition: 0.3s;
-    transition-delay: 0s;
-  }
-  &:hover {
-    padding-left: 20px;
-    &::after {
-      transition-delay: 0.1s;
-      left: 0;
-      opacity: 1;
-    }
+  // &::after {
+  //   content: '>';
+  //   position: absolute;
+  //   left: -15px;
+  //   opacity: 0;
+  //   transition: 0.3s;
+  //   transition-delay: 0s;
+  // }
+  // &:hover {
+  //   padding-left: 20px;
+  //   &::after {
+  //     transition-delay: 0.1s;
+  //     left: 0;
+  //     opacity: 1;
+  //   }
+  // }
+  :hover {
+    color: ${({ theme }) => theme.text.mutted};
   }
 `;
 
@@ -120,19 +123,19 @@ const Button = styled.button`
 
   & > span {
     transition: 0.3s;
-    opacity: 0.3;
+    opacity: 0.5;
     color: ${({ theme }) => theme.text.lighter2};
   }
-  &:hover {
-    & > span {
-      opacity: 0.7;
-    }
-    border-color: black;
-  }
+  // &:hover {
+  //   & > span {
+  //     opacity: 0.7;
+  //   }
+  //   border-color: black;
+  // }
 `;
 
 const CartIcon = styled.img`
-  margin-right: 48px;
+  margin-right: 20px;
 `;
 
 export default CatalogItem;

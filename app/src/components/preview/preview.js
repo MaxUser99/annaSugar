@@ -140,6 +140,10 @@ const Link = styled(BrowserLink)`
   text-decoration: none;
   font-size: 14px;
   color: ${({ theme }) => theme.text.default};
+  transition: 0.3s;
+  :hover {
+    color: ${({ theme }) => theme.text.mutted};
+  }
 `;
 
 Preview.propTypes = {

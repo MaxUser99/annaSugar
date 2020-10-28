@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link as BrowserLink } from 'gatsby';
 
-const Link = (props) => (
-  <StyledLink activeClassName='active' {...props} />
+const Link = ({ active, ...props }) => (
+  <StyledLink $active={active} {...props} />
 );
 
 const StyledLink = styled(BrowserLink)`
@@ -13,10 +13,14 @@ const StyledLink = styled(BrowserLink)`
   text-outline: none;
   font-size: 14px;
   line-height: 14px;
-  color: ${({ theme }) => theme.text.lighter2};
-  &.active {
-    color: ${({ theme }) => theme.text.mutted};
-  }
+  color: ${({ theme, $active }) => (
+    $active
+    ? theme.text.mutted
+    : theme.text.lighter2
+  )};
+  // &.active {
+  //   color: ${({ theme }) => theme.text.mutted};
+  // }
 `;
 
 export default Link;

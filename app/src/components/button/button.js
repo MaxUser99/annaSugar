@@ -57,6 +57,7 @@ const StyledButton = styled.button`
   &:hover {
     background-color: ${({ theme }) => (`${theme.color.black}E6`)};
     color: ${({ theme }) => theme.text.white};
+    opacity: 0.7;
   }
   &:focus {
     outline: none;
@@ -64,7 +65,6 @@ const StyledButton = styled.button`
 
   position: relative; 
   overflow: hidden; 
-  box-shadow: 6px 7px 40px -4px rgba(0, 0, 0, 0.2); 
 
   & span {
     position: absolute; 

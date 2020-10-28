@@ -60,6 +60,7 @@ const Title = styled.h2`
   line-height: 48px;
   color: ${({ theme }) => theme.text.header};
   margin: 64px 0 32px;
+  font-family: 'Cormorant Infant';
 `;
 
 const StyledButton = styled(Button)`

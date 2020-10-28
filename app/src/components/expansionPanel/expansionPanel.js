@@ -67,11 +67,17 @@ const Wrapper = styled(Container)`
   }
 
   ${({ $withTransition }) => $withTransition && 'transition: 0.3s'};
+
+  :hover > div:first-of-type p {
+    transition: 0.3s;
+    color: ${({ theme }) => theme.text.mutted};
+  }
 `;
 
 const Content = styled(Container)`
   transition: 0.3s;
   opacity: ${({ $open }) => ($open ? '1' : '0')};
+  line-height: 28px;
 `;
 
 const Header = styled(Container)`

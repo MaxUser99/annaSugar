@@ -67,7 +67,12 @@ const Link = styled(BrowserLink)`
   padding-top: 29px;
   font-size: 14px;
   line-height: 14px;
+  text-decoration: none;
   color: ${({ theme }) => theme.color.black};
+  transition: 0.3s;
+  :hover {
+    color: ${({ theme }) => theme.text.mutted};
+  }
 `;
 
 const ZoomBtn = styled.button`
