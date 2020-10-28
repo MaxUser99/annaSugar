@@ -3,17 +3,13 @@ import FaqForm from './faqForm';
 import Button from '../../../button/button';
 import { connect } from 'react-redux';
 import { loadFaqs, editFAQ } from '../../../../store/content/faqActions';
-
-const SUBMIT_ACTION = {
-  PUBLISH: 'PUBLISH',
-  SAVE: 'SAVE',
-}
+import { SUBMIT_ACTION } from '../../../../constants/submitAction';
 
 const EditFaqForm = ({
   initial,
+  id,
   loadFaqs,
   editFAQ,
-  id
 }) => {
   const [ submitAction, setSubmitAction ] = useState();
 
@@ -33,12 +29,13 @@ const EditFaqForm = ({
       if (targetFaq) editFAQ(targetFaq);
       else console.log('should navigate'); 
     }
-
+    console.log('initial: ', initial)
     if (!initial) loadOnEditFAQ();
   }, []);
 
   return (
     <FaqForm
+      title='Edit FAQ'
       disabled={!initial}
       initial={initial}
       formProps={{ onSubmit: submitHandler }}

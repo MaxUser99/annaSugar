@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { navigate } from 'gatsby';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import Layout from '../../components/layout';
@@ -13,22 +12,18 @@ const FaqForm = ({
   initial = {},
   buttons,
   formProps,
-  disabled
+  disabled,
+  title
 }) => {
   const [ lang, setLang ] = useState(LANGS.RU)
-  const {
-    register,
-    handleSubmit,
-    formState,
-    ...rest 
-  } = useForm();
+  const { register, handleSubmit, formState } = useForm();
 
   const { onSubmit, ...restFormProps } = formProps;
   const date = initial.date || new Date();
 
   return (
     <Layout>
-      <Header>Edit FAQ</Header>
+      <Header>{title}</Header>
       <SubHeader
         date={date}
         setLang={setLang}

@@ -24,7 +24,7 @@ export const loadArticles = page => {
       date: new Date(date)
     }));
 
-    return delay(1500).then(() => dispatch(pushArticles(transformedArticles, page)));
+    return delay(500).then(() => dispatch(pushArticles(transformedArticles, page)));
   };
 };
 
@@ -39,8 +39,26 @@ export const loadReviewArticle = id => {
         }
       : null;
 
-    await delay(1000).then(() => dispatch(setReviewArticle(transformedArticle)));
+    await delay(500).then(() => dispatch(setReviewArticle(transformedArticle)));
     return transformedArticle;
+  }
+}
+
+export const editArticle = (data) => {
+  return async dispatch => {
+    return null;
+  }
+}
+
+export const publishArticle = id => {
+  return async dispatch => {
+    return null;
+  }
+}
+
+export const createArticle = data => {
+  return async dispatch => {
+    return null;
   }
 }
 

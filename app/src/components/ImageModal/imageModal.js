@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { openModal } from '../../store/ui/uiActions';
 import { MODAL_NAMES } from '../../constants/modals';
-import CloseImage from '../../assets/icons/close.svg';
+import CloseImage from '../../assets/icons/close.inline.svg';
 import ZoomIn from '../../assets/icons/zoom.svg';
 import ZoomOut from '../../assets/icons/zoom-out.svg';
 import Container from '../container/container';

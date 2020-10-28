@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Container from '../../../container/container';
 import LangButton from '../../../header/components/langButton';
+import LANGS from '../../../../constants/langs';
 
 const SubHeader = ({
   date,

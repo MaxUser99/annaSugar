@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import FaqForm from './faqForm';
-import Button from '../../../button/button';
+import React from 'react';
 import { connect } from 'react-redux';
-import { createFaq, publishFaq } from '../../../../store/content/faqActions';
+import Button from '../../../button/button';
+import ArticleForm from './articleForm';
+import { createArticle, publishArticle } from '../../../../store/content/articleActions';
 import { SUBMIT_ACTION } from '../../../../constants/submitAction';
 
 function isSubmitAllowed(dirtyFields) {
-  const requiredFields = [ 'title', 'text' ];
+  const requiredFields = [ 'title', 'text', 'descripton' ];
   return requiredFields.every(field => dirtyFields[field] === true);
 }
 
-const NewFaqForm = ({ createFaq, publishFaq }) => {
+const NewArticleForm = ({ createArticle, publishArticle }) => {
   const [ submitAction, setSubmitAction ] = useState();
-  const [ isLoading, setLoading ] = useState(false);
+  const [ isLoading, setLoading ] = useState(false); 
 
   const submitHandler = async (data) => {
     setLoading(true);
@@ -20,12 +20,12 @@ const NewFaqForm = ({ createFaq, publishFaq }) => {
     const saveActions = [SUBMIT_ACTION.SAVE, SUBMIT_ACTION.BOTH];
     const publishActions = [SUBMIT_ACTION.PUBLISH, SUBMIT_ACTION.BOTH];
 
-    const savedFaq = saveActions.includes(submitAction)
-      ? await createFaq(data)
+    const savedArticle = saveActions.includes(submitAction)
+      ? await createArticle(data)
       : null;
 
-    if (savedFaq && publishActions.includes(submitAction)) {
-      await publishFaq(savedFaq.id);
+    if (savedArticle && publishActions.includes(submitAction)) {
+      await publishArticle(savedArticle.id);
     }
 
     setLoading(false);
@@ -39,10 +39,10 @@ const NewFaqForm = ({ createFaq, publishFaq }) => {
   );
 
   return (
-    <FaqForm
-      title='New FAQ'
-      disabled={isLoading}
+    <ArticleForm
+      title='New Article'
       formProps={{ onSubmit: submitHandler }}
+      disabled={isLoading}
       buttons={
         ({ isDirty, dirtyFields }) => {
           const isDisabled = !isSubmitAllowed(dirtyFields); 
@@ -66,8 +66,8 @@ const NewFaqForm = ({ createFaq, publishFaq }) => {
 const mapStateToProps = null;
 
 const mapDispatchToProps = dispatch => ({
-  createFaq: faqData => dispatch(createFaq(faqData)),
-  publishFaq: id => dispatch(publishFaq(id))
+  createArticle: data => dispatch(createArticle(data)),
+  publishArticle: id => dispatch(publishArticle(id))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewFaqForm);
+export default connect(mapStateToProps, mapDispatchToProps)(NewArticleForm);

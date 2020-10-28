@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useMemo, useState, useRef } from 'react';
 import styled, { css } from 'styled-components';
 import Container from '../container/container';
 
@@ -15,6 +15,10 @@ const Input = ({
     ? Textarea
     : StyledInput;
 
+  const refProps = multiline
+    ? { inputRef }
+    : { ref: inputRef };
+
   return (
     <StyledContainer
       className={className}
@@ -25,7 +29,7 @@ const Input = ({
       <InputComponent
         id={`${name}-input`}
         name={name}
-        ref={inputRef}
+        { ...refProps }
         error={error}
         {...props}
       />
@@ -33,37 +37,48 @@ const Input = ({
   );
 }
 
-const Textarea = React.forwardRef((props, ref) => {
+const Textarea = props => {
   const {
     onChange = () => {},
+    defaultValue,
+    inputRef,
     ...rest
   } = props;
-
   const [ contentHeight, setHeight ] = useState(0);
-  const componentRef = ref || React.createRef();
+  const [ inputNode, setInputNode ] = useState();
+
+  function calcHeight() {
+    if (inputNode) {
+      const h = inputNode.scrollHeight;
+      setHeight(h);
+    }
+  }
 
   useEffect(() => {
-    console.log('case')
-    if (componentRef.current) {
-      setHeight(componentRef.current.scrollHeight);
+    if (inputNode && inputRef) {
+      inputRef(inputNode);
     }
-  }, [props.defaultValue]);
+    calcHeight();
+  }, [inputNode]);
+
+  useEffect(() => {
+    calcHeight();
+  }, [defaultValue]);
 
   const changeHandler = e => {
-    if (componentRef.current) {
-      setHeight(componentRef.current.scrollHeight);
-    }
+    calcHeight();
     onChange(e);
   };
 
   return (
     <StyledTextArea
-      ref={componentRef}
+      ref={node => node && setInputNode(node)}
       onChange={changeHandler}
       $height={contentHeight}
+      defaultValue={defaultValue}
       {...rest} />
   );
-});
+};
 
 const StyledContainer = styled(Container)`
   &:not(:last-of-type) {
