@@ -14,7 +14,7 @@ const Articles = ({
   navigate
 }) => {
   useEffect(() => {
-    if (page === null) loadArticles();
+    if (page === null) loadArticles(0);
   }, []);
 
   const createNewClickHandler = () => navigate('new');
