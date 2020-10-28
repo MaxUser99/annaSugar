@@ -10,7 +10,7 @@ import SubHeader from '../components/subheader';
 import GalleryIcon from '../../../../assets/icons/gallery.inline.svg';
 import CloseIcon from '../../../../assets/icons/close.inline.svg';
 
-const ArticleForm = ({ 
+const CatalogForm = ({
   initial = {},
   buttons,
   formProps,
@@ -44,6 +44,7 @@ const ArticleForm = ({
   }
 
   const submitCallback = data => onSubmit({ ...data, image });
+
 
   return (
     <Layout>
@@ -91,15 +92,6 @@ const ArticleForm = ({
             />
           </Container>
         </StyledContainer>
-        <Input
-          name='text'
-          label='Text'
-          disabled={disabled}
-          placeholder='Enter article text'
-          inputRef={register({ required: true })}
-          defaultValue={initial.text}
-          multiline
-        />
         <Buttons justifyContent='center' fullWidth>
           { buttons(formState) }
         </Buttons>
@@ -170,4 +162,4 @@ const ImageWrapper = styled(Container)`
   )};
 `;
 
-export default ArticleForm;
+export default CatalogForm;

@@ -1,12 +1,7 @@
+import { FormProvider } from 'react-hook-form';
 import mockBracelets from '../mocks/mockBracelets.json';
 // import mockBraceletImage from '../../assets/images/mock-bracelet.svg';
-
-const DATA_TYPE = {
-  BRACELETS: 'BRACELETS',
-  KINDLES: 'KINDLES',
-  BEADS: 'BEADS',
-  OTHERS: 'OTHERS',
-}
+import { CATALOG_DATA_TYPE } from '../../constants/catalogDataType';
 
 export const SET_BRACELETS_LOADING = 'SET_BRACELETS_LOADING';
 export const SET_KINDLES_LOADING = 'SET_KINDLES_LOADING';
@@ -38,34 +33,80 @@ export const setReviewKindle = item => ({ type: SET_REVIEW_KINDLE, payload: item
 export const setReviewBead = item => ({ type: SET_REVIEW_BEAD, payload: item});
 export const setReviewOther = item => ({ type: SET_REVIEW_OTHER, payload: item});
 
-export const loadBracelets = page => itemsLoader(page, DATA_TYPE.BRACELETS);
-export const loadKindles = page => itemsLoader(page, DATA_TYPE.KINDLES);
-export const loadBeads = page => itemsLoader(page, DATA_TYPE.BEADS);
-export const loadOthers = page => itemsLoader(page, DATA_TYPE.OTHERS);
+export const loadBracelets = page => itemsLoader(page, CATALOG_DATA_TYPE.BRACELETS);
+export const loadKindles = page => itemsLoader(page, CATALOG_DATA_TYPE.KINDLES);
+export const loadBeads = page => itemsLoader(page, CATALOG_DATA_TYPE.BEADS);
+export const loadOthers = page => itemsLoader(page, CATALOG_DATA_TYPE.OTHERS);
 
-export const loadBraceletsItem = id => itemLoader(id, DATA_TYPE.BRACELETS);
-export const loadKindlesItem = id => itemLoader(id, DATA_TYPE.KINDLES);
-export const loadBeadsItem = id => itemLoader(id, DATA_TYPE.BEADS);
-export const loadOthersItem = id => itemLoader(id, DATA_TYPE.OTHERS);
+export const loadBraceletsItem = id => itemLoader(id, CATALOG_DATA_TYPE.BRACELETS);
+export const loadKindlesItem = id => itemLoader(id, CATALOG_DATA_TYPE.KINDLES);
+export const loadBeadsItem = id => itemLoader(id, CATALOG_DATA_TYPE.BEADS);
+export const loadOthersItem = id => itemLoader(id, CATALOG_DATA_TYPE.OTHERS);
+
+export const createBracelet = data => itemCreator(data, CATALOG_DATA_TYPE.BRACELETS);
+export const createKindle = data => itemCreator(data, CATALOG_DATA_TYPE.KINDLES);
+export const createBead = data => itemCreator(data, CATALOG_DATA_TYPE.BEADS);
+export const createOther = data => itemCreator(data, CATALOG_DATA_TYPE.OTHERS);
+
+export const publishBracelet = id => itemPublisher(id, CATALOG_DATA_TYPE.BRACELETS);
+export const publishKindle = id => itemPublisher(id, CATALOG_DATA_TYPE.KINDLES);
+export const publishBead = id => itemPublisher(id, CATALOG_DATA_TYPE.BEADS);
+export const publishOther = id => itemPublisher(id, CATALOG_DATA_TYPE.OTHERS);
+
+function itemPublisher(data, contentType) {
+  console.log('data: ', data);
+  switch (contentType) {
+    case CATALOG_DATA_TYPE.BRACELETS:
+      console.log('should publish BRACELETS');
+      break;
+    case CATALOG_DATA_TYPE.KINDLES:
+      console.log('should publish KINDLES');
+      break;
+    case CATALOG_DATA_TYPE.BEADS:
+      console.log('should publish BEADS');
+      break;
+    case CATALOG_DATA_TYPE.OTHERS:
+      console.log('should publish OTHERS');
+      break;
+  }
+}
+
+function itemCreator(data, contentType) {
+  console.log('data: ', data);
+  switch (contentType) {
+    case CATALOG_DATA_TYPE.BRACELETS:
+      console.log('should create BRACELETS');
+      break;
+    case CATALOG_DATA_TYPE.KINDLES:
+      console.log('should create KINDLES');
+      break;
+    case CATALOG_DATA_TYPE.BEADS:
+      console.log('should create BEADS');
+      break;
+    case CATALOG_DATA_TYPE.OTHERS:
+      console.log('should create OTHERS');
+      break;
+  }
+}
 
 function itemsLoader(page, contentType) {
   let setLoading;
   let pushItems;
 
   switch (contentType) {
-    case DATA_TYPE.BRACELETS:
+    case CATALOG_DATA_TYPE.BRACELETS:
       setLoading = setBraceletsLoading;
       pushItems = pushBracelets;
       break;
-    case DATA_TYPE.KINDLES:
+    case CATALOG_DATA_TYPE.KINDLES:
       setLoading = setKindlesLoading;
       pushItems = pushKindles;
       break;
-    case DATA_TYPE.BEADS:
+    case CATALOG_DATA_TYPE.BEADS:
       setLoading = setBeadsLoading;
       pushItems = pushBeads;
       break;
-    case DATA_TYPE.OTHERS:
+    case CATALOG_DATA_TYPE.OTHERS:
       setLoading = setOthersLoading;
       pushItems = pushOthers;
       break;
@@ -81,16 +122,16 @@ function itemsLoader(page, contentType) {
 function itemLoader(id, contentType) {
   let setReviewItem;
   switch (contentType) {
-    case DATA_TYPE.BRACELETS:
+    case CATALOG_DATA_TYPE.BRACELETS:
       setReviewItem = setReviewBracelet;
       break;
-    case DATA_TYPE.KINDLES:
+    case CATALOG_DATA_TYPE.KINDLES:
       setReviewItem = setReviewKindle;
       break;
-    case DATA_TYPE.BEADS:
+    case CATALOG_DATA_TYPE.BEADS:
       setReviewItem = setReviewBead;
       break;
-    case DATA_TYPE.OTHERS:
+    case CATALOG_DATA_TYPE.OTHERS:
       setReviewItem = setReviewOther;
       break; 
   }

@@ -16,6 +16,7 @@ import CatalogBeads from '../components/admin/subpages/catalogBeads';
 import CatalogBracelets from '../components/admin/subpages/catalogBracelets';
 import CatalogKindles from '../components/admin/subpages/catalogKindles';
 import CatalogOthers from '../components/admin/subpages/catalogOthers';
+import NewCatalogForm from '../components/admin/forms/catalog/newCatalogForm';
 
 import ConsultAstro from '../components/admin/subpages/consultAstro';
 import ConsultRituals from '../components/admin/subpages/consultRituals';
@@ -94,6 +95,15 @@ const formsRoutes = [
     pathnames: ['/reviews/:id'],
     component: EditReviewForm
   },
+  {
+    pathnames: [
+      '/catalog/beads/new',
+      '/catalog/bracelets/new',
+      '/catalog/kindles/new',
+      '/catalog/others/new',
+    ],
+    component: NewCatalogForm
+  }
 ]
 
 
