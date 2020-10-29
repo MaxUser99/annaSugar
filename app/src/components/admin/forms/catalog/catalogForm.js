@@ -9,6 +9,7 @@ import Header from '../components/header';
 import SubHeader from '../components/subheader';
 import GalleryIcon from '../../../../assets/icons/gallery.inline.svg';
 import CloseIcon from '../../../../assets/icons/close.inline.svg';
+import Carousel from '../components/carousel';
 
 const CatalogForm = ({
   initial = {},
@@ -18,14 +19,24 @@ const CatalogForm = ({
   title
 }) => {
   const fileInputRef = React.createRef();
-  const [ image, setImage ] = useState(initial.image);
-  const [ gallery, setGallery ] = useState([]);
+  const [ image, setImage ] = useState(
+    Array.isArray(initial.images)
+    ? initial.images[0]
+    : undefined
+  );
+  const [ gallery, setGallery ] = useState(
+    Array.isArray(initial.images)
+    ? initial.images.slice(1)
+    : []
+  );
   const [ lang, setLang ] = useState(LANGS.RU)
   const { register, handleSubmit, formState } = useForm();
 
   useEffect(() => {
-    setImage(initial.image);
-  }, [ initial.image ])
+    if (Array.isArray(initial.images)) {
+      setImage(initial.images[0]);
+    }
+  }, [ initial.images ])
 
   const { onSubmit, ...restFormProps } = formProps;
   const date = initial.date || new Date();
@@ -38,7 +49,7 @@ const CatalogForm = ({
 
   const removeImage = () => setImage(null);
 
-  const fileChangeHandler = async ({ target: { files }}) => {
+  const fileChangeHandler = ({ target: { files }}) => {
     if (files.length) {
       setImage(URL.createObjectURL(files[0]));
     }
@@ -73,6 +84,7 @@ const CatalogForm = ({
                 accept="image/*"
                 onChange={fileChangeHandler} />
             </ImageWrapper>
+            <Carousel gallery={gallery} setGallery={setGallery} />
           </ImagesBlock>
           <Container direction='column' fullWidth>
             <Input
@@ -90,15 +102,19 @@ const CatalogForm = ({
               placeholder='Enter item short description'
               inputRef={register({ required: true })}
               defaultValue={initial.brief}
-              multiline
+              multiline 
             />
             <PriceWrapper alignItems='center' fullWidth>
               <PriceInput
                 name='firstPrice'
                 type='number'
+                label='price'
               />
-              /
-              <PriceInput />
+              <span>/</span>
+              <PriceInput
+                name='secondPrice'
+                type='number'
+              />
             </PriceWrapper>
           </Container>
         </StyledContainer>
@@ -110,6 +126,8 @@ const CatalogForm = ({
   );
 }
 
+// const Label = styled.
+
 const PriceInput = styled(Input)`
   :not(:last-of-type) {
     margin-bottom: 0;
@@ -118,7 +136,8 @@ const PriceInput = styled(Input)`
     margin-right: 10px
   }
   :last-of-type {
-    margin-left: 10px
+    margin-left: 10px;
+    margin-top: auto;
   }
   > input {
     background: white;
@@ -126,12 +145,19 @@ const PriceInput = styled(Input)`
     border-radius: 4px;
     padding: 10px;
   }
+  label {
+    margin-bottom: 10px;
+  }
 `;
 
 const PriceWrapper = styled(Container)`
   margin-top: auto;
+  margin-bottom: 70px;
   max-width: 400px;
   min-width: 300px;
+  span {
+    margin-top: 24px;
+  }
 `;
 
 const StyledContainer = styled(Container)`

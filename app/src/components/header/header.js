@@ -17,7 +17,7 @@ const links = [
 
 const Header = () => {
   const { pathname } = useLocation();
-  // console.log('location: ', location);
+
   return (
     <RootContainer id='header' alignItems='center' fullWidth>
       <ContentWrapper justifyContent='space-between' alignItems='center' maxWidth='wide'>
