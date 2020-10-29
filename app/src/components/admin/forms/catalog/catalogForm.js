@@ -10,6 +10,7 @@ import SubHeader from '../components/subheader';
 import GalleryIcon from '../../../../assets/icons/gallery.inline.svg';
 import CloseIcon from '../../../../assets/icons/close.inline.svg';
 import Carousel from '../components/carousel';
+import BlocksWrapper from '../components/blocksWrapper';
 
 const CatalogForm = ({
   initial = {},
@@ -118,6 +119,9 @@ const CatalogForm = ({
             </PriceWrapper>
           </Container>
         </StyledContainer>
+        <BlocksWrapper
+          
+        />
         <Buttons justifyContent='center' fullWidth>
           { buttons(formState) }
         </Buttons>
